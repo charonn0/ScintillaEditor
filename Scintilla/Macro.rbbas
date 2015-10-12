@@ -96,6 +96,11 @@ Protected Class Macro
 		    Scintilla.SCI.SETREADONLY, Scintilla.SCI.USEPOPUP, Scintilla.SCI.SETWRAPMODE, Scintilla.SCI.SETVIEWEOL, Scintilla.SCI.SETSELECTIONEND, Scintilla.SCI.SETSELECTIONSTART
 		    MacroRecord.Value("W") = Integer(WParam)
 		    MacroRecord.Value("L") = Nil
+		    
+		  Case Scintilla.SCI.SETMARGINWIDTHN
+		    MacroRecord.Value("W") = Integer(WParam)
+		    MacroRecord.Value("L") = Integer(LParam)
+		    
 		  Else
 		    MacroRecord = RaiseEvent Serialize(Msg, WParam, LParam)
 		    If MacroRecord = Nil Then Raise New RuntimeException 'ERR_BAD_MACRO_ACTION)
