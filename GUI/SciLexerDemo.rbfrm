@@ -154,7 +154,7 @@ End
 
 	#tag MenuHandler
 		Function NewDocumentItem() As Boolean Handles NewDocumentItem.Action
-			Dim document As New Scintilla.Document(EditControl1.Editor)
+			Dim document As Scintilla.Document = EditControl1.CreateDocument
 			EditControl1.CurrentDocument = document
 			Return True
 			
@@ -167,7 +167,7 @@ End
 			If f <> Nil Then 
 			Dim bs As BinaryStream = BinaryStream.Open(f, True)
 			ActiveFile = f
-			Dim doc As New Scintilla.Document(EditControl1.Editor)
+			Dim doc As Scintilla.Document = EditControl1.CreateDocument
 			EditControl1.CurrentDocument = doc
 			doc.Text = bs.Read(bs.Length)
 			bs.Close
