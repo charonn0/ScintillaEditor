@@ -78,7 +78,7 @@ Protected Module Scintilla
 		    p = Ptr(Param.Int32Value)
 		  Case VarType(Param) = Variant.TypeString
 		    ' this sometimes doesn't work. Prefer MemoryBlocks
-		    Dim mb As New MemoryBlock(Param.StringValue.LenB * 2)
+		    Dim mb As New MemoryBlock(Param.StringValue.LenB * 2 + 1)
 		    mb.CString(0) = Param.StringValue
 		    p = mb
 		  Case VarType(Param) = Variant.TypeNil
