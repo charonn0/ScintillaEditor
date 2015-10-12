@@ -5,6 +5,7 @@ Protected Class Document
 		  Dim doc As Integer = InitialOwner.SendMessage(Scintilla.SCI.CREATEDOCUMENT, Nil, Nil)
 		  If doc <> 0 Then
 		    mDocument = Ptr(doc)
+		    mOwner = InitialOwner
 		  Else
 		    Raise New NilObjectException
 		  End If
@@ -18,11 +19,13 @@ Protected Class Document
 		  If DocumentRef = Nil Then
 		    Me.Constructor(InitialOwner)
 		  Else
-		    Dim doc As Integer = mOwner.SendMessage(Scintilla.SCI.ADDREFDOCUMENT, Nil, DocumentRef)
-		    If doc <> 0 Then
+		    Dim err As Integer = mOwner.SendMessage(Scintilla.SCI.ADDREFDOCUMENT, Nil, DocumentRef)
+		    If err = 0 Then
 		      mDocument = DocumentRef
 		    Else
-		      Raise New NilObjectException
+		      Dim error As New NilObjectException
+		      error.ErrorNumber = err
+		      Raise error
 		    End If
 		  End If
 		End Sub
