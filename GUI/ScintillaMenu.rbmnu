@@ -13,13 +13,19 @@ Begin Menu ScintillaMenu
       End
       Begin MenuItem NewDocumentItem
          SpecialMenu = 0
-         Text = "New document"
+         Text = "New..."
          Index = -2147483648
          AutoEnable = True
       End
       Begin MenuItem SaveFileItem
          SpecialMenu = 0
          Text = "Save..."
+         Index = -2147483648
+         AutoEnable = True
+      End
+      Begin MenuItem SaveAsMenuItem
+         SpecialMenu = 0
+         Text = "Save as..."
          Index = -2147483648
          AutoEnable = True
       End
@@ -98,6 +104,15 @@ Begin Menu ScintillaMenu
          SpecialMenu = 0
          Text = "-"
          Index = -2147483648
+         AutoEnable = True
+      End
+      Begin MenuItem SearchItem
+         SpecialMenu = 0
+         Text = "Find..."
+         Index = -2147483648
+         ShortcutKey = "&F"
+         Shortcut = "Cmd+&F"
+         MenuModifier = True
          AutoEnable = True
       End
       Begin MenuItem EditSelectAll
