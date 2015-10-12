@@ -567,6 +567,54 @@ Inherits Canvas
 		EOLVisible As Boolean
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0
+		#tag Setter
+			Set
+			  Dim err As New UnsupportedFormatException
+			  If CountFields(value, ",") > 5 Then
+			    err.Message = "MarginTypes contains too many fields"
+			    Raise err
+			  End If
+			  Dim fields() As String = Split(value, ",")
+			  For i As Integer = 0 To UBound(fields)
+			    If Not IsNumeric(fields(i)) Then
+			      err.Message = "MarginTypes contains an invalid field: '" + fields(i) + "'"
+			      Raise err
+			    End If
+			    Dim w As Integer = Val(fields(i))
+			    If w < 0 Or w > 5 Then
+			      err.Message = "MarginTypes must be 0-4"
+			      Raise err
+			    End If
+			    Call Me.SendMessage(Scintilla.SCI.SETMARGINTYPEN, i, w)
+			  Next
+			End Set
+		#tag EndSetter
+		MarginTypes As String
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Setter
+			Set
+			  Dim err As New UnsupportedFormatException
+			  If CountFields(value, ",") > 5 Then
+			    err.Message = "MarginWidths contains too many fields"
+			    Raise err
+			  End If
+			  Dim fields() As String = Split(value, ",")
+			  For i As Integer = 0 To UBound(fields)
+			    If Not IsNumeric(fields(i)) Then
+			      err.Message = "MarginWidths contains an invalid field: '" + fields(i) + "'"
+			      Raise err
+			    End If
+			    Dim w As Integer = Val(fields(i))
+			    Call Me.SendMessage(Scintilla.SCI.SETMARGINWIDTHN, i, w)
+			  Next
+			End Set
+		#tag EndSetter
+		MarginWidths As String
+	#tag EndComputedProperty
+
 	#tag Property, Flags = &h21
 		Private mCurrentDocument As Scintilla.Document
 	#tag EndProperty
@@ -937,6 +985,20 @@ Inherits Canvas
 			Group="Position"
 			Type="Boolean"
 			InheritedFrom="Canvas"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="MarginTypes"
+			Visible=true
+			Group="Behavior"
+			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="MarginWidths"
+			Visible=true
+			Group="Behavior"
+			Type="String"
+			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
