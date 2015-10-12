@@ -58,6 +58,18 @@ Inherits Scintilla.Managers.BaseManager
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function GetMarkers(LineNumber As Integer) As Integer
+		  Return Me.SendMessage(Scintilla.SCI.MARKERGET, LineNumber)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function HasMarker(LineNumber As Integer, MarkerNumber As Integer) As Boolean
+		  Return BitAnd(GetMarkers(LineNumber), MarkerNumber) = MarkerNumber
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function Length(LineNumber As Integer) As Integer
 		  Return Me.SendMessage(Scintilla.SCI.LINELENGTH, LineNumber)
 		End Function

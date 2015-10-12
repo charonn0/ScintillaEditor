@@ -305,6 +305,15 @@ Protected Module Scintilla
 		AUTOMATIC
 	#tag EndEnum
 
+	#tag Enum, Name = SC_MARGIN, Type = Integer, Flags = &h1
+		SYMBOL=0
+		  NUMBER
+		  BACK
+		  FORE
+		  TEXT
+		RTEXT
+	#tag EndEnum
+
 	#tag Enum, Name = SC_MARK, Type = Integer, Flags = &h1
 		MARK_CIRCLE=0
 		  MARK_ROUNDRECT=1

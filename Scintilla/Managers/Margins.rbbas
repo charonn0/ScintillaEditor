@@ -58,14 +58,14 @@ Inherits Scintilla.Managers.BaseManager
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Type(MarginNumber As Integer) As Integer
+		Function Type(MarginNumber As Integer) As Scintilla.SC_MARGIN
 		  If MarginNumber < 0 Or MarginNumber > 4 Then Raise New Scintilla.ScintillaException(ERR_INVALID_MARGIN_NUMBER)
-		  Return Me.SendMessage(Scintilla.SCI.GETMARGINTYPEN, MarginNumber)
+		  Return Scintilla.SC_MARGIN(Me.SendMessage(Scintilla.SCI.GETMARGINTYPEN, MarginNumber))
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Type(MarginNumber As Integer, Assigns NewType As Integer)
+		Sub Type(MarginNumber As Integer, Assigns NewType As Scintilla.SC_MARGIN)
 		  If MarginNumber < 0 Or MarginNumber > 4 Then Raise New Scintilla.ScintillaException(ERR_INVALID_MARGIN_NUMBER)
 		  Call Me.SendMessage(Scintilla.SCI.SETMARGINTYPEN, MarginNumber, NewType)
 		End Sub
