@@ -2,8 +2,8 @@
 Protected Class LineManager
 Inherits Scintilla.Managers.BaseManager
 	#tag Method, Flags = &h0
-		Function AddMarker(LineNumber As Integer, MarkerNumber As Integer) As Integer
-		  Return Me.SendMessage(Scintilla.SCI.MARKERADD, LineNumber, MarkerNumber)
+		Function AddMarker(LineNumber As Integer, MarkerNumber As Scintilla.SC_MARK) As Integer
+		  Return Me.SendMessage(Scintilla.SCI.MARKERADD, LineNumber, Integer(MarkerNumber))
 		End Function
 	#tag EndMethod
 
@@ -14,14 +14,14 @@ Inherits Scintilla.Managers.BaseManager
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ClearAllMarkersByNumber(MarkerNumber As Integer)
-		  Call Me.SendMessage(Scintilla.SCI.MARKERDELETE, MarkerNumber)
+		Sub ClearAllMarkersByNumber(MarkerNumber As Scintilla.SC_MARK)
+		  Call Me.SendMessage(Scintilla.SCI.MARKERDELETE, Integer(MarkerNumber))
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ClearMarker(LineNumber As Integer, MarkerNumber As Integer)
-		  Call Me.SendMessage(Scintilla.SCI.MARKERDELETE, LineNumber, MarkerNumber)
+		Sub ClearMarker(LineNumber As Integer, MarkerNumber As Scintilla.SC_MARK)
+		  Call Me.SendMessage(Scintilla.SCI.MARKERDELETE, LineNumber, Integer(MarkerNumber))
 		End Sub
 	#tag EndMethod
 
@@ -64,8 +64,8 @@ Inherits Scintilla.Managers.BaseManager
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function HasMarker(LineNumber As Integer, MarkerNumber As Integer) As Boolean
-		  Return BitAnd(GetMarkers(LineNumber), MarkerNumber) = MarkerNumber
+		Function HasMarker(LineNumber As Integer, MarkerNumber As Scintilla.SC_MARK) As Boolean
+		  Return BitAnd(GetMarkers(LineNumber), MarkerInt(MarkerNumber)) = MarkerInt(MarkerNumber)
 		End Function
 	#tag EndMethod
 

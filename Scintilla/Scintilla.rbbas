@@ -62,6 +62,77 @@ Protected Module Scintilla
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h1
+		Protected Function MarkerInt(Marker As Scintilla.SC_MARK) As Integer
+		  Select Case Marker
+		  Case SC_MARK.MARK_CIRCLE
+		    Return &h1
+		  Case SC_MARK.MARK_ROUNDRECT
+		    Return &h2
+		  Case SC_MARK.MARK_ARROW
+		    Return &h4
+		  Case SC_MARK.MARK_SMALLRECT
+		    Return &h8
+		  Case SC_MARK.MARK_SHORTARROW
+		    Return &h10
+		  Case SC_MARK.MARK_EMPTY
+		    Return &h20
+		  Case SC_MARK.MARK_ARROWDOWN
+		    Return &h40
+		  Case SC_MARK.MARK_MINUS
+		    Return &h80
+		  Case SC_MARK.MARK_PLUS
+		    Return &h100
+		  Case SC_MARK.MARK_VLINE
+		    Return &h200
+		  Case SC_MARK.MARK_LCORNER
+		    Return &h400
+		  Case SC_MARK.MARK_TCORNER
+		    Return &h800
+		  Case SC_MARK.MARK_BOXPLUS
+		    Return &h1000
+		  Case SC_MARK.MARK_BOXPLUSCONNECTED
+		    Return &h2000
+		  Case SC_MARK.MARK_BOXMINUS
+		    Return &h4000
+		  Case SC_MARK.MARK_BOXMINUSCONNECTED
+		    Return &h8000
+		  Case SC_MARK.MARK_LCORNERCURVE
+		    Return &h10000
+		  Case SC_MARK.MARK_TCORNERCURVE
+		    Return &h20000
+		  Case SC_MARK.MARK_CIRCLEPLUS
+		    Return &h40000
+		  Case SC_MARK.MARK_CIRCLEPLUSCONNECTED
+		    Return &h80000
+		  Case SC_MARK.MARK_CIRCLEMINUS
+		    Return &h100000
+		  Case SC_MARK.MARK_CIRCLEMINUSCONNECTED
+		    Return &h200000
+		  Case SC_MARK.MARK_BACKGROUND
+		    Return &h400000
+		  Case SC_MARK.MARK_DOTDOTDOT
+		    Return &h800000
+		  Case SC_MARK.MARK_ARROWS
+		    Return &h1000000
+		  Case SC_MARK.MARK_PIXMAP
+		    Return &h2000000
+		  Case SC_MARK.MARK_FULLRECT
+		    Return &h4000000
+		  Case SC_MARK.MARK_LEFTRECT
+		    Return &h8000000
+		  Case SC_MARK.MARK_AVAILABLE
+		    Return &h10000000
+		  Case SC_MARK.MARK_UNDERLINE
+		    Return &h20000000
+		  Case SC_MARK.MARK_RGBAIMAGE
+		    Return &h40000000
+		  Else
+		    Return 0
+		  End Select
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h21
 		Private Function PackParam(Param As Variant) As Ptr
 		  Dim p As Ptr

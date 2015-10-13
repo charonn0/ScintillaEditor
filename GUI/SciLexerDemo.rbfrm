@@ -331,7 +331,7 @@ End
 		      Dim i As Integer = Me.Lines.AddMarker(l, Integer(Scintilla.SC_MARK.MARK_CIRCLE))
 		      mBookmarks.Append(i)
 		    Else
-		      Me.Lines.ClearMarker(l, Integer(Scintilla.SC_MARK.MARK_CIRCLE))
+		      Me.Lines.ClearMarker(l, Scintilla.SC_MARK.MARK_ROUNDRECT)
 		    End If
 		  End If
 		End Sub
