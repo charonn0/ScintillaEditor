@@ -327,11 +327,11 @@ End
 		Sub MarginClicked(MarginNumber As Integer, CharPos As Integer)
 		  If MarginNumber = 1 Then
 		    Dim l As Integer = Me.Lines.FromPosition(CharPos)
-		    If Not Me.Lines.HasMarker(l, Integer(Scintilla.SC_MARK.MARK_CIRCLE)) Then
-		      Dim i As Integer = Me.Lines.AddMarker(l, Integer(Scintilla.SC_MARK.MARK_CIRCLE))
+		    If Not Me.Lines.HasMarker(l, Scintilla.SC_MARK.MARK_CIRCLE) Then
+		      Dim i As Integer = Me.Lines.AddMarker(l, Scintilla.SC_MARK.MARK_CIRCLE)
 		      mBookmarks.Append(i)
 		    Else
-		      Me.Lines.ClearMarker(l, Scintilla.SC_MARK.MARK_ROUNDRECT)
+		      Me.Lines.ClearMarker(l, Scintilla.SC_MARK.MARK_CIRCLE)
 		    End If
 		  End If
 		End Sub
