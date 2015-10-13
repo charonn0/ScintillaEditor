@@ -79,7 +79,7 @@ Protected Class Macro
 		    Scintilla.SCI.EDITTOGGLEOVERTYPE, Scintilla.SCI.CANCEL, Scintilla.SCI.DELETEBACK, Scintilla.SCI.TAB, Scintilla.SCI.BACKTAB, Scintilla.SCI.FORMFEED, Scintilla.SCI.VCHOME, Scintilla.SCI.VCHOMEEXTEND, _
 		    Scintilla.SCI.VCHOMEWRAP, Scintilla.SCI.VCHOMEWRAPEXTEND, Scintilla.SCI.DELWORDLEFT, Scintilla.SCI.DELWORDRIGHT, Scintilla.SCI.DELWORDRIGHTEND, Scintilla.SCI.DELLINELEFT, _
 		    Scintilla.SCI.DELLINERIGHT, Scintilla.SCI.LINECOPY, Scintilla.SCI.LINECUT, Scintilla.SCI.LINEDELETE, Scintilla.SCI.LINETRANSPOSE, Scintilla.SCI.LINEDUPLICATE, Scintilla.SCI.LOWERCASE, _
-		    Scintilla.SCI.UPPERCASE, Scintilla.SCI.LINESCROLLDOWN, Scintilla.SCI.LINESCROLLUP, Scintilla.SCI.DELETEBACKNOTLINE, Scintilla.SCI.HOMEDISPLAY, Scintilla.SCI.HOMEDISPLAYEXTEND, _
+		    Scintilla.SCI.LINESCROLLDOWN, Scintilla.SCI.LINESCROLLUP, Scintilla.SCI.DELETEBACKNOTLINE, Scintilla.SCI.HOMEDISPLAY, Scintilla.SCI.HOMEDISPLAYEXTEND, _
 		    Scintilla.SCI.LINEENDDISPLAY, Scintilla.SCI.LINEENDDISPLAYEXTEND, Scintilla.SCI.SETSELECTIONMODE, Scintilla.SCI.LINEDOWNRECTEXTEND, Scintilla.SCI.LINEUPRECTEXTEND, _
 		    Scintilla.SCI.CHARLEFTRECTEXTEND, Scintilla.SCI.CHARRIGHTRECTEXTEND, Scintilla.SCI.HOMERECTEXTEND, Scintilla.SCI.VCHOMERECTEXTEND, Scintilla.SCI.LINEENDRECTEXTEND, _
 		    Scintilla.SCI.PAGEUPRECTEXTEND, Scintilla.SCI.PAGEDOWNRECTEXTEND, Scintilla.SCI.SELECTIONDUPLICATE, Scintilla.SCI.COPYALLOWLINE, Scintilla.SCI.VERTICALCENTRECARET, _
@@ -97,7 +97,7 @@ Protected Class Macro
 		    MacroRecord.Value("W") = Integer(WParam)
 		    MacroRecord.Value("L") = Nil
 		    
-		  Case Scintilla.SCI.SETMARGINWIDTHN
+		  Case Scintilla.SCI.SETMARGINWIDTHN, Scintilla.SCI.SETMARGINTYPEN
 		    MacroRecord.Value("W") = Integer(WParam)
 		    MacroRecord.Value("L") = Integer(LParam)
 		    
