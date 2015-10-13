@@ -134,6 +134,15 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub AppendText(TextToAppend As String)
+		  If TextToAppend = "" And mEditor.Handle = 0 Then Return
+		  TextToAppend = ConvertEncoding(TextToAppend, Encodings.UTF8)
+		  Dim mb As MemoryBlock = TextToAppend
+		  Call Me.SendMessage(Scintilla.SCI.APPENDTEXT, TextToAppend.Len, mb)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function AutoComplete() As Scintilla.Managers.AutoComplete
 		  Return New Scintilla.Managers.AutoComplete(mEditor)
 		End Function
@@ -180,6 +189,16 @@ Inherits Canvas
 		Function History() As Scintilla.Managers.History
 		  Return New Scintilla.Managers.History(mEditor)
 		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub InsertText(InsertPos As Integer = -1, TextToInsert As String)
+		  If TextToInsert = "" And mEditor.Handle = 0 Then Return
+		  If InsertPos = -1 Then InsertPos = Me.CaretPosition
+		  TextToInsert = ConvertEncoding(TextToInsert, Encodings.UTF8)
+		  Dim mb As MemoryBlock = TextToInsert + Chr(0)
+		  Call Me.SendMessage(Scintilla.SCI.INSERTTEXT, InsertPos, mb)
+		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
@@ -710,8 +729,8 @@ Inherits Canvas
 		#tag Setter
 			Set
 			  If value = "" And mEditor.Handle = 0 Then Return
-			  value = ConvertEncoding(value, Encodings.ASCII)
-			  Dim mb As MemoryBlock = value
+			  value = ConvertEncoding(value, Encodings.UTF8)
+			  Dim mb As MemoryBlock = value + Chr(0)
 			  Call Me.SendMessage(Scintilla.SCI.SETTEXT, Nil, mb, True) ' send a direct message since the value might be huge
 			End Set
 		#tag EndSetter
