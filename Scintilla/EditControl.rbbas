@@ -686,6 +686,7 @@ Inherits Canvas
 		#tag EndGetter
 		#tag Setter
 			Set
+			  If mRecordMacro = value Then Return
 			  If value Then
 			    Call Me.SendMessage(Scintilla.SCI.STOPRECORD)
 			  Else
