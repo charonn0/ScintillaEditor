@@ -214,18 +214,6 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub MacroStart()
-		  Call Me.SendMessage(Scintilla.SCI.STARTRECORD)
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub MacroStop()
-		  Call Me.SendMessage(Scintilla.SCI.STOPRECORD)
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Function Margins() As Scintilla.Managers.Margins
 		  Return New Scintilla.Managers.Margins(mEditor)
 		End Function
@@ -655,6 +643,10 @@ Inherits Canvas
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
+		Private mRecordMacro As Boolean
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
 		Private mUsePopup As Boolean = True
 	#tag EndProperty
 
@@ -684,6 +676,25 @@ Inherits Canvas
 			End Set
 		#tag EndSetter
 		ReadOnly As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return mRecordMacro
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  If value Then
+			    Call Me.SendMessage(Scintilla.SCI.STOPRECORD)
+			  Else
+			    Call Me.SendMessage(Scintilla.SCI.STARTRECORD)
+			  End If
+			  mRecordMacro = value
+			End Set
+		#tag EndSetter
+		RecordMacro As Boolean
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -1035,6 +1046,11 @@ Inherits Canvas
 		#tag ViewProperty
 			Name="ReadOnly"
 			Visible=true
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="RecordMacro"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
