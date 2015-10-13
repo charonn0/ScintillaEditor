@@ -153,6 +153,42 @@ End
 	#tag EndMenuHandler
 
 	#tag MenuHandler
+		Function EOLConvertToLinux() As Boolean Handles EOLConvertToLinux.Action
+			EditControl1.EOL.Value(True) = EndOfLine.UNIX
+			Return True
+			
+			Return True
+			
+		End Function
+	#tag EndMenuHandler
+
+	#tag MenuHandler
+		Function EOLConvertToMac() As Boolean Handles EOLConvertToMac.Action
+			EditControl1.EOL.Value(True) = EndOfLine.Macintosh
+			Return True
+			
+			Return True
+			
+		End Function
+	#tag EndMenuHandler
+
+	#tag MenuHandler
+		Function EOLConvertToWin32() As Boolean Handles EOLConvertToWin32.Action
+			EditControl1.EOL.Value(True) = EndOfLine.Windows
+			Return True
+			
+		End Function
+	#tag EndMenuHandler
+
+	#tag MenuHandler
+		Function EOLVisibleItem() As Boolean Handles EOLVisibleItem.Action
+			EditControl1.EOL.Visible = Not EditControl1.EOL.Visible
+			Return True
+			
+		End Function
+	#tag EndMenuHandler
+
+	#tag MenuHandler
 		Function NewDocumentItem() As Boolean Handles NewDocumentItem.Action
 			Dim document As Scintilla.Document = EditControl1.CreateDocument
 			EditControl1.CurrentDocument = document
@@ -198,10 +234,20 @@ End
 
 	#tag MenuHandler
 		Function SearchItem() As Boolean Handles SearchItem.Action
-			Dim fr As New SearchWindow
-			fr.Find(EditControl1)
-			Break
+			'Dim fr As New SearchWindow
+			'fr.Find(EditControl1)
+			'Break
+			EditControl1.AppendText("This text was appended")
+			EditControl1.InsertText(25, "This text was Inserted")
+			EditControl1.InsertText("This text was also inserted")
+			Return True
 			
+		End Function
+	#tag EndMenuHandler
+
+	#tag MenuHandler
+		Function WordWrapItem() As Boolean Handles WordWrapItem.Action
+			EditControl1.WrapLines = Not EditControl1.WrapLines
 			Return True
 			
 		End Function

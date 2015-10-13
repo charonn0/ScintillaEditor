@@ -125,5 +125,55 @@ Begin Menu ScintillaMenu
          AutoEnable = True
       End
    End
+   Begin MenuItem Viewmenu
+      SpecialMenu = 0
+      Text = "View"
+      Index = -2147483648
+      AutoEnable = True
+      Begin MenuItem WordWrapItem
+         SpecialMenu = 0
+         Text = "Word wrap"
+         Index = -2147483648
+         AutoEnable = True
+      End
+      Begin MenuItem EOLMenu
+         SpecialMenu = 0
+         Text = "EOL"
+         Index = -2147483648
+         AutoEnable = True
+         SubMenu = True
+         Begin MenuItem EOLVisibleItem
+            SpecialMenu = 0
+            Text = "Visible"
+            Index = -2147483648
+            AutoEnable = True
+         End
+         Begin MenuItem EOLConvertMenu
+            SpecialMenu = 0
+            Text = "Convert to"
+            Index = -2147483648
+            AutoEnable = True
+            SubMenu = True
+            Begin MenuItem EOLConvertToWin32
+               SpecialMenu = 0
+               Text = "Windows"
+               Index = -2147483648
+               AutoEnable = True
+            End
+            Begin MenuItem EOLConvertToLinux
+               SpecialMenu = 0
+               Text = "Linux"
+               Index = -2147483648
+               AutoEnable = True
+            End
+            Begin MenuItem EOLConvertToMac
+               SpecialMenu = 0
+               Text = "Mac"
+               Index = -2147483648
+               AutoEnable = True
+            End
+         End
+      End
+   End
 End
 #tag EndMenu
