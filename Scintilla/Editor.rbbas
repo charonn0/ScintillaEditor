@@ -143,14 +143,15 @@ Protected Class Editor
 		    Return True
 		  Case WM_SIZE
 		    RaiseEvent ScintillaEvent(msg, notification)
+		  Case WM_KEYUP
+		    Break
+		  Else
+		    'Case WM_DROPFILES
+		    System.DebugLog("Window message: &h" + Hex(msg))
 		  End Select
 		End Function
 	#tag EndMethod
 
-
-	#tag Hook, Flags = &h0
-		Event Resized(NewPosition As REALbasic.Rect)
-	#tag EndHook
 
 	#tag Hook, Flags = &h0
 		Event ScintillaEvent(EventCode As Integer, Notification As Scintilla.SCNotification)

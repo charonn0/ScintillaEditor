@@ -234,12 +234,9 @@ End
 
 	#tag MenuHandler
 		Function SearchItem() As Boolean Handles SearchItem.Action
-			'Dim fr As New SearchWindow
-			'fr.Find(EditControl1)
-			'Break
-			EditControl1.AppendText("This text was appended")
-			EditControl1.InsertText(25, "This text was Inserted")
-			EditControl1.InsertText("This text was also inserted")
+			Dim fr As New SearchWindow
+			fr.Find(EditControl1)
+			Break
 			Return True
 			
 		End Function

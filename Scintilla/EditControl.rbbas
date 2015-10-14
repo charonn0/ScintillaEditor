@@ -10,85 +10,91 @@ Inherits Canvas
 
 	#tag Event
 		Sub DoubleClick(X As Integer, Y As Integer)
-		  System.DebugLog(CurrentMethodName)
+		  ' This event is not raised by the superclass
+		  #pragma Unused X
+		  #pragma Unused Y
 		End Sub
 	#tag EndEvent
 
 	#tag Event
 		Function DragEnter(obj As DragItem, action As Integer) As Boolean
-		  System.DebugLog(CurrentMethodName)
+		  ' This event is not raised by the superclass
+		  #pragma Unused obj
+		  #pragma Unused action
 		End Function
 	#tag EndEvent
 
 	#tag Event
 		Sub DragExit(obj As DragItem, action As Integer)
-		  System.DebugLog(CurrentMethodName)
+		  ' This event is not raised by the superclass
+		  #pragma Unused obj
+		  #pragma Unused action
 		End Sub
 	#tag EndEvent
 
 	#tag Event
 		Function DragOver(x As Integer, y As Integer, obj As DragItem, action As Integer) As Boolean
-		  System.DebugLog(CurrentMethodName)
+		  ' This event is not raised by the superclass
+		  #pragma Unused obj
+		  #pragma Unused action
+		  #pragma Unused x
+		  #pragma Unused y
 		End Function
 	#tag EndEvent
 
 	#tag Event
 		Sub DropObject(obj As DragItem, action As Integer)
-		  System.DebugLog(CurrentMethodName)
-		End Sub
-	#tag EndEvent
-
-	#tag Event
-		Sub EnableMenuItems()
-		  System.DebugLog(CurrentMethodName)
-		End Sub
-	#tag EndEvent
-
-	#tag Event
-		Sub GotFocus()
-		  System.DebugLog(CurrentMethodName)
+		  ' This event is not raised by the superclass
+		  #pragma Unused obj
+		  #pragma Unused action
 		End Sub
 	#tag EndEvent
 
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
-		  System.DebugLog(CurrentMethodName)
+		  ' This event is not raised by the superclass
+		  #pragma Unused Key
 		End Function
 	#tag EndEvent
 
 	#tag Event
 		Sub KeyUp(Key As String)
-		  System.DebugLog(CurrentMethodName)
-		End Sub
-	#tag EndEvent
-
-	#tag Event
-		Sub LostFocus()
-		  System.DebugLog(CurrentMethodName)
+		  ' This event is not raised by the superclass
+		  #pragma Unused Key
 		End Sub
 	#tag EndEvent
 
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  System.DebugLog(CurrentMethodName)
+		  ' This event is not raised by the superclass
+		  #pragma Unused X
+		  #pragma Unused Y
 		End Function
 	#tag EndEvent
 
 	#tag Event
 		Sub MouseDrag(X As Integer, Y As Integer)
-		  System.DebugLog(CurrentMethodName)
+		  ' This event is not raised by the superclass
+		  #pragma Unused X
+		  #pragma Unused Y
 		End Sub
 	#tag EndEvent
 
 	#tag Event
 		Sub MouseUp(X As Integer, Y As Integer)
-		  System.DebugLog(CurrentMethodName)
+		  ' This event is not raised by the superclass
+		  #pragma Unused X
+		  #pragma Unused Y
 		End Sub
 	#tag EndEvent
 
 	#tag Event
 		Function MouseWheel(X As Integer, Y As Integer, deltaX as Integer, deltaY as Integer) As Boolean
-		  System.DebugLog(CurrentMethodName)
+		  ' This event is not raised by the superclass
+		  #pragma Unused X
+		  #pragma Unused Y
+		  #pragma Unused deltaX
+		  #pragma Unused deltaY
 		End Function
 	#tag EndEvent
 
@@ -111,18 +117,9 @@ Inherits Canvas
 
 	#tag Event
 		Sub Paint(g As Graphics)
+		  ' This event is not raised by the superclass
 		  #pragma Unused g
 		  
-		  'If mLastRect = Nil Then mLastRect = New REALbasic.Rect(Me.Left, Me.Top, Me.Width, Me.Height)
-		  'Dim now As New REALbasic.Rect(Me.Left, Me.Top, Me.Width, Me.Height)
-		  '
-		  'If mLastRect.Left <> now.Left Or _
-		  'mLastRect.Top <> now.Top Or _
-		  'mLastRect.Width <> now.Width Or _
-		  'mLastRect.Height <> now.Height Then
-		  'mLastRect = now
-		  'Call SetWindowPos(mEditor.Handle, 0, now.Left, now.Top, now.Width, now.Height, SWP_SHOWWINDOW Or SWP_NOREDRAW Or SWP_NOZORDER Or SWP_NOMOVE)
-		  'End If
 		End Sub
 	#tag EndEvent
 
@@ -397,6 +394,10 @@ Inherits Canvas
 
 	#tag Hook, Flags = &h0
 		Event Close()
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event DoubleClick(X As Integer, Y As Integer)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
