@@ -2,7 +2,7 @@
 Protected Class Style
 Inherits Scintilla.Managers.BaseManager
 	#tag Method, Flags = &h1000
-		Sub Constructor(ScintillaEditor As Scintilla.Editor, StyleNumber As Integer)
+		Sub Constructor(ScintillaEditor As Scintilla.EditControl, StyleNumber As Integer)
 		  // Calling the overridden superclass constructor.
 		  If StyleNumber < 0 Or StyleNumber >= STYLE_MAX Then Raise New Scintilla.ScintillaException(ERR_INVALID_STYLE_NUMBER)
 		  Super.Constructor(ScintillaEditor)
@@ -11,7 +11,7 @@ Inherits Scintilla.Managers.BaseManager
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Field() As Scintilla.Editor
+		Function Field() As Scintilla.EditControl
 		  Return Super.Field
 		End Function
 	#tag EndMethod

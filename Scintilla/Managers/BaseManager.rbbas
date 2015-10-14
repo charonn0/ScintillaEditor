@@ -1,7 +1,7 @@
 #tag Class
 Protected Class BaseManager
 	#tag Method, Flags = &h0
-		Sub Constructor(ScintillaEditor As Scintilla.Editor)
+		Sub Constructor(ScintillaEditor As Scintilla.EditControl)
 		  ' Keeping a reference to a BaseManager does not prevent its ScintillaEditor from being destroyed.
 		  ' Generally, do not keep references to BaseManager objects; instead, use the accessor methods of
 		  ' the ScintillaEditor to get a new reference.
@@ -10,15 +10,15 @@ Protected Class BaseManager
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
-		Protected Function Field() As Scintilla.Editor
-		  If mField <> Nil And mField.Value <> Nil Then Return Scintilla.Editor(mField.Value)
+		Protected Function Field() As Scintilla.EditControl
+		  If mField <> Nil And mField.Value <> Nil Then Return Scintilla.EditControl(mField.Value)
 		  Raise New ScintillaException(ERR_MISSING_EDITOR)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Protected Function SendMessage(Msg As Integer, WParam As Variant = Nil, LParam As Variant = Nil, DirectMessage As Boolean = False) As Integer
-		  Return Me.Field.Parent.SendMessage(Msg, WParam, LParam, DirectMessage)
+		  Return Me.Field.SendMessage(Msg, WParam, LParam, DirectMessage)
 		End Function
 	#tag EndMethod
 

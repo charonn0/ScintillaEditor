@@ -2,7 +2,7 @@
 Protected Class CharacterCell
 Inherits Scintilla.Managers.BaseManager
 	#tag Method, Flags = &h1000
-		Sub Constructor(ScintillaEditor As Scintilla.Editor, Position As Integer)
+		Sub Constructor(ScintillaEditor As Scintilla.EditControl, Position As Integer)
 		  // Calling the overridden superclass constructor.
 		  Super.Constructor(ScintillaEditor)
 		  mPosition = Position

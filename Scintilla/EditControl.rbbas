@@ -129,7 +129,7 @@ Inherits Canvas
 
 	#tag Method, Flags = &h0
 		Function Annotations() As Scintilla.Managers.Annotation
-		  Return New Scintilla.Managers.Annotation(mEditor)
+		  Return New Scintilla.Managers.Annotation(Me)
 		End Function
 	#tag EndMethod
 
@@ -144,19 +144,19 @@ Inherits Canvas
 
 	#tag Method, Flags = &h0
 		Function AutoComplete() As Scintilla.Managers.AutoComplete
-		  Return New Scintilla.Managers.AutoComplete(mEditor)
+		  Return New Scintilla.Managers.AutoComplete(Me)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function CallTip() As Scintilla.Managers.CallTip
-		  Return New Scintilla.Managers.CallTip(mEditor)
+		  Return New Scintilla.Managers.CallTip(Me)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function Clipboard() As Scintilla.Managers.Clipboard
-		  Return New Scintilla.Managers.Clipboard(mEditor)
+		  Return New Scintilla.Managers.Clipboard(Me)
 		End Function
 	#tag EndMethod
 
@@ -181,13 +181,13 @@ Inherits Canvas
 
 	#tag Method, Flags = &h0
 		Function EOL() As Scintilla.Managers.EOL
-		  Return New Scintilla.Managers.EOL(mEditor)
+		  Return New Scintilla.Managers.EOL(Me)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function History() As Scintilla.Managers.History
-		  Return New Scintilla.Managers.History(mEditor)
+		  Return New Scintilla.Managers.History(Me)
 		End Function
 	#tag EndMethod
 
@@ -203,19 +203,19 @@ Inherits Canvas
 
 	#tag Method, Flags = &h0
 		Function KeyBindings() As Scintilla.Managers.KeyBindings
-		  Return New Scintilla.Managers.KeyBindings(mEditor)
+		  Return New Scintilla.Managers.KeyBindings(Me)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function Lines() As Scintilla.Managers.LineManager
-		  Return New Scintilla.Managers.LineManager(mEditor)
+		  Return New Scintilla.Managers.LineManager(Me)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function Margins() As Scintilla.Managers.Margins
-		  Return New Scintilla.Managers.Margins(mEditor)
+		  Return New Scintilla.Managers.Margins(Me)
 		End Function
 	#tag EndMethod
 
@@ -240,7 +240,7 @@ Inherits Canvas
 
 	#tag Method, Flags = &h0
 		Function Printer() As Scintilla.Managers.PrintingManager
-		  Return New Scintilla.Managers.PrintingManager(mEditor)
+		  Return New Scintilla.Managers.PrintingManager(Me)
 		End Function
 	#tag EndMethod
 
@@ -333,13 +333,13 @@ Inherits Canvas
 
 	#tag Method, Flags = &h0
 		Function ScrollPosition() As Scintilla.Managers.ScrollManager
-		  Return New Scintilla.Managers.ScrollManager(mEditor)
+		  Return New Scintilla.Managers.ScrollManager(Me)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function Searcher() As Scintilla.Managers.FindReplace
-		  Return New Scintilla.Managers.FindReplace(mEditor)
+		  Return New Scintilla.Managers.FindReplace(Me)
 		End Function
 	#tag EndMethod
 
@@ -368,13 +368,13 @@ Inherits Canvas
 
 	#tag Method, Flags = &h0
 		Function Style(StyleNumber As Integer) As Scintilla.Managers.Style
-		  Return New Scintilla.Managers.Style(mEditor, StyleNumber)
+		  Return New Scintilla.Managers.Style(Me, StyleNumber)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function TextSelection() As Scintilla.Managers.SelectionManager
-		  Return New Scintilla.Managers.SelectionManager(mEditor)
+		  Return New Scintilla.Managers.SelectionManager(Me)
 		End Function
 	#tag EndMethod
 
