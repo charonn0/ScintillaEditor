@@ -143,8 +143,6 @@ Protected Class Editor
 		    Return True
 		  Case WM_SIZE
 		    RaiseEvent ScintillaEvent(msg, notification)
-		  Case WM_KEYUP
-		    Break
 		  Else
 		    'Case WM_DROPFILES
 		    System.DebugLog("Window message: &h" + Hex(msg))
