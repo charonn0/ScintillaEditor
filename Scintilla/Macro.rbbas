@@ -45,7 +45,7 @@ Protected Class Macro
 		  WParam = MacroRecord.Value("W")
 		  LParam = MacroRecord.Value("L")
 		  If VarType(LParam) = Variant.TypeString Then
-		    Dim mb As New MemoryBlock(LParam.StringValue.Len * 2)
+		    Dim mb As New MemoryBlock(LParam.StringValue.Len * 2 + 1)
 		    mb.CString(0) = LParam.StringValue
 		    LParam = mb
 		  End If
