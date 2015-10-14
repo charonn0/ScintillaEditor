@@ -592,6 +592,7 @@ Inherits Canvas
 	#tag ComputedProperty, Flags = &h0
 		#tag Setter
 			Set
+			  If value.Trim = "" Then Return
 			  Dim err As New UnsupportedFormatException
 			  If CountFields(value, ",") > 5 Then
 			    err.Message = "MarginTypes contains too many fields"
@@ -618,6 +619,7 @@ Inherits Canvas
 	#tag ComputedProperty, Flags = &h0
 		#tag Setter
 			Set
+			  If value.Trim = "" Then Return
 			  Dim err As New UnsupportedFormatException
 			  If CountFields(value, ",") > 5 Then
 			    err.Message = "MarginWidths contains too many fields"
@@ -744,18 +746,11 @@ Inherits Canvas
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  Dim len As Integer =Me.SendMessage(Scintilla.SCI.GETLENGTH)
-			  If len > 0 Then
-			    Dim mb As New MemoryBlock(len * 2)
-			    len =Me.SendMessage(Scintilla.SCI.GETTEXT, mb.Size, mb, True) ' send a direct message since the text might be huge
-			    Dim ret As String = mb.CString(0)
-			    Return ret
-			  End If
+			  Return Me.CurrentDocument.Text
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  If value = "" And mEditor.Handle = 0 Then Return
 			  value = ConvertEncoding(value, Encodings.UTF8)
 			  Dim mb As MemoryBlock = value + Chr(0)
 			  Call Me.SendMessage(Scintilla.SCI.SETTEXT, Nil, mb, True) ' send a direct message since the value might be huge
@@ -786,6 +781,7 @@ Inherits Canvas
 		#tag EndGetter
 		#tag Setter
 			Set
+			  If value.Trim = "" Then Return
 			  Me.Style(0).TextFont = value
 			End Set
 		#tag EndSetter
