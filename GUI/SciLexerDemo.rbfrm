@@ -130,7 +130,7 @@ End
 
 	#tag MenuHandler
 		Function EditRedo() As Boolean Handles EditRedo.Action
-			If EditControl1.History.CanUndo Then Call EditControl1.History.Undo
+			If EditControl1.History.CanRedo Then Call EditControl1.History.Redo
 			Return True
 			
 		End Function
@@ -146,7 +146,7 @@ End
 
 	#tag MenuHandler
 		Function EditUndo() As Boolean Handles EditUndo.Action
-			If EditControl1.History.CanRedo Then Call EditControl1.History.Redo
+			If EditControl1.History.CanUndo Then Call EditControl1.History.Undo
 			Return True
 			
 		End Function
