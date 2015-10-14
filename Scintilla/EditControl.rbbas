@@ -464,6 +464,20 @@ Inherits Canvas
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
+			  Return Me.Style(0).Background
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Me.Style(0).Background = value
+			End Set
+		#tag EndSetter
+		BackColor As Color
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
 			  Return Me.SendMessage(Scintilla.SCI.GETMOUSEDOWNCAPTURES) <> 0
 			End Get
 		#tag EndGetter
@@ -751,6 +765,48 @@ Inherits Canvas
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  Return Me.Style(0).TextColor
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Me.Style(0).TextColor = value
+			End Set
+		#tag EndSetter
+		TextColor As Color
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  Return Me.Style(0).TextFont
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Me.Style(0).TextFont = value
+			End Set
+		#tag EndSetter
+		TextFont As String
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  Return Me.Style(0).TextSize
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Me.Style(0).TextSize = value
+			End Set
+		#tag EndSetter
+		TextSize As Double
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
 		#tag Note
 			If True (the default), Scintilla handles WM_CONTEXTMENU and the ScintillaEditor.ConstructContextualMenu event is not raised.
 			If False, then ConstructContextualMenu and ContextualMenuAction work like normal, and the Scintilla menu is supressed.
@@ -892,6 +948,13 @@ Inherits Canvas
 			InitialValue="True"
 			Type="Boolean"
 			InheritedFrom="Canvas"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="BackColor"
+			Visible=true
+			Group="Behavior"
+			InitialValue="&cFFFFFF"
+			Type="Color"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Backdrop"
@@ -1101,6 +1164,26 @@ Inherits Canvas
 			Group="Behavior"
 			Type="String"
 			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TextColor"
+			Visible=true
+			Group="Behavior"
+			InitialValue="&c000000"
+			Type="Color"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TextFont"
+			Visible=true
+			Group="Behavior"
+			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TextSize"
+			Visible=true
+			Group="Behavior"
+			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"

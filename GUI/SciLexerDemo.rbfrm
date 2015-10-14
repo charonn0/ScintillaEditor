@@ -336,6 +336,25 @@ End
 	#tag Event
 		Sub Open()
 		  Me.Margins.Clickable(1) = True
+		  Me.TextFont = "Consolas"
+		  Me.TextSize = 13.5
+		  
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub HotspotMouseDown(Position As Integer)
+		  Break
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub HotspotMouseUp(Position As Integer)
+		  Break
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub HotspotDoubleClicked(Position As Integer)
+		  Break
 		End Sub
 	#tag EndEvent
 #tag EndEvents
