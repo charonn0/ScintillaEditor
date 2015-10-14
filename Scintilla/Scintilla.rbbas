@@ -12,17 +12,6 @@ Protected Module Scintilla
 		Private Soft Declare Function EnableWindow Lib "User32" (HWND As Integer, Enable As Boolean) As Boolean
 	#tag EndExternalMethod
 
-	#tag Method, Flags = &h0
-		Sub Foo()
-		  Dim d As New Dictionary("SCN_STYLENEEDED":2000, "SCN_CHARADDED":2001, "SCN_SAVEPOINTREACHED":2002, "SCN_SAVEPOINTLEFT":2003, "SCN_MODIFYATTEMPTRO":2004, "SCN_KEY":2005, "SCN_DOUBLECLICK":2006, "SCN_UPDATEUI":2007, "SCN_MODIFIED":2008, "SCN_MACRORECORD":2009, "SCN_MARGINCLICK":2010, "SCN_NEEDSHOWN":2011, "SCN_PAINTED":2013, "SCN_USERLISTSELECTION":2014, "SCN_URIDROPPED":2015, "SCN_DWELLSTART":2016, "SCN_DWELLEND":2017, "SCN_ZOOM":2018, "SCN_HOTSPOTCLICK":2019, "SCN_HOTSPOTDOUBLECLICK":2020, "SCN_CALLTIPCLICK":2021, "SCN_AUTOCSELECTION":2022, "SCN_INDICATORCLICK":2023, "SCN_INDICATORRELEASE":2024, "SCN_AUTOCCANCELLED":2025, "SCN_AUTOCCHARDELETED":2026, "SCN_HOTSPOTRELEASECLICK":2027)
-		  Dim f As FolderItem = SpecialFolder.Desktop.Child("foo.txt")
-		  Dim bs As BinaryStream = BinaryStream.Create(f, True)
-		  For Each s As String In d.Keys
-		    bs.Write(Str(d.Value(s) + ":""" + s + """, "))
-		  Next
-		  bs.Close
-		End Sub
-	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h21
 		Private Soft Declare Function FormatMessageA Lib "Kernel32" (dwFlags As Integer, lpSource As Integer, dwMessageId As Integer, dwLanguageId As Integer, lpBuffer As ptr, nSize As Integer, Arguments As Integer) As Integer
