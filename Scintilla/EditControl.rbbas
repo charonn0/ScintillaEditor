@@ -166,13 +166,12 @@ Inherits Canvas
 
 	#tag Method, Flags = &h0
 		Function Enabled() As Boolean
-		  Return RectControl(Me).Enabled And mEditor.Enabled
+		  Return mEditor.Enabled
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub Enabled(Assigns NewValue As Boolean)
-		  RectControl(Me).Enabled = NewValue
 		  mEditor.Enabled = NewValue
 		End Sub
 	#tag EndMethod
