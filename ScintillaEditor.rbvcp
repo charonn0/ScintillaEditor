@@ -31,6 +31,7 @@ Class=Clipboard;Scintilla/Managers/Clipboard.rbbas;&h52014FFF;&h62AF7FFF;false
 Class=KeyBindings;Scintilla/Managers/KeyBindings.rbbas;&h276D6FFF;&h62AF7FFF;false
 Class=ZoomManager;Scintilla/Managers/ZoomManager.rbbas;&h68F287FF;&h62AF7FFF;false
 Folder=GUI;GUI;&h12D45FFF;&h0;false
+Window=FontSelect;GUI/FontSelect.rbfrm;&hE28C7FF;&h12D45FFF;false
 Window=SearchWindow;GUI/SearchWindow.rbfrm;&h54708FFF;&h12D45FFF;false
 Window=SciLexerDemo;GUI/SciLexerDemo.rbfrm;&h64D2C7FF;&h12D45FFF;false
 MenuBar=ScintillaMenu;GUI/ScintillaMenu.rbmnu;&h3905BFFF;&h12D45FFF;false
