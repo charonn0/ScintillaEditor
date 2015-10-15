@@ -28,6 +28,7 @@ Begin Window SciLexerDemo
       AcceptFocus     =   True
       AcceptTabs      =   True
       AutoDeactivate  =   True
+      BackColor       =   "&cFFFFFF"
       Backdrop        =   ""
       CaptureMouse    =   True
       CaretPosition   =   ""
