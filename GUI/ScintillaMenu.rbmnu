@@ -175,5 +175,17 @@ Begin Menu ScintillaMenu
          End
       End
    End
+   Begin MenuItem FormatMenu
+      SpecialMenu = 0
+      Text = "Format"
+      Index = -2147483648
+      AutoEnable = True
+      Begin MenuItem FontMenu
+         SpecialMenu = 0
+         Text = "Font..."
+         Index = -2147483648
+         AutoEnable = True
+      End
+   End
 End
 #tag EndMenu

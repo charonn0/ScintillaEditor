@@ -190,6 +190,14 @@ End
 	#tag EndMenuHandler
 
 	#tag MenuHandler
+		Function FontMenu() As Boolean Handles FontMenu.Action
+			Call FontSelect.SelectFont(EditControl1.Style(0))
+			Return True
+			
+		End Function
+	#tag EndMenuHandler
+
+	#tag MenuHandler
 		Function NewDocumentItem() As Boolean Handles NewDocumentItem.Action
 			Dim document As Scintilla.Document = EditControl1.CreateDocument
 			EditControl1.CurrentDocument = document
