@@ -9,14 +9,7 @@ Inherits Scintilla.Managers.BaseManager
 
 	#tag Method, Flags = &h0
 		Function FindInDocument(SearchPattern As String, Start As Integer = 0, Finish As Integer = - 1) As Integer
-		  Dim ttf As TextToFind
-		  If Finish = -1 Then Finish = Me.Field.CurrentDocument.Text.Len
-		  Dim mb As New MemoryBlock(SearchPattern.LenB * 2 + 1)
-		  mb.CString(0) = SearchPattern
-		  ttf.SearchPattern = mb
-		  ttf.Range.cpMin = Start
-		  ttf.Range.cpMax = Finish
-		  If Me.SendMessage(Scintilla.SCI.FINDTEXT, Me.Flags, ttf.StringValue(TargetLittleEndian)) = -1 Then Raise New Scintilla.ScintillaException(GetLastError, False)
+		  Call Me.SendMessage(Scintilla.SCI.TARGETFROMSELECTION, Nil, Nil)
 		  Return Me.FindFirst(SearchPattern)
 		End Function
 	#tag EndMethod

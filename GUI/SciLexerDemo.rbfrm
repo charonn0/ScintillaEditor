@@ -72,6 +72,7 @@ End
 #tag WindowCode
 	#tag Event
 		Function CancelClose(appQuitting as Boolean) As Boolean
+		  #pragma Unused appQuitting
 		  If EditControl1.Dirty Then
 		    Dim msg, ttl As String
 		    If ActiveFile = Nil Then 
@@ -234,9 +235,12 @@ End
 
 	#tag MenuHandler
 		Function SearchItem() As Boolean Handles SearchItem.Action
-			Dim fr As New SearchWindow
-			fr.Find(EditControl1)
-			Break
+			'Dim fr As New SearchWindow
+			'fr.Find(EditControl1)
+			'Break
+			Dim s As String = "redraw"
+			s = ConvertEncoding(s, Encodings.UTF8)
+			Dim i As Integer = EditControl1.Searcher.FindInDocument(s)
 			Return True
 			
 		End Function
@@ -291,13 +295,10 @@ End
 #tag Events EditControl1
 	#tag Event
 		Function ConstructContextualMenu(base as MenuItem, x as Integer, y as Integer) As Boolean
+		  #pragma Unused x
+		  #pragma Unused y
 		  base.Append(New MenuItem("Foo"))
 		  Return True
-		End Function
-	#tag EndEvent
-	#tag Event
-		Function ContextualMenuAction(hitItem as MenuItem) As Boolean
-		  Break
 		End Function
 	#tag EndEvent
 	#tag Event
@@ -308,16 +309,6 @@ End
 	#tag Event
 		Sub SavePointLeft()
 		  SetTitle()
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub PerformRedo(Tag As Integer)
-		  Break
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub PerformUndo(Tag As Integer)
-		  Break
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -336,25 +327,12 @@ End
 	#tag Event
 		Sub Open()
 		  Me.Margins.Clickable(1) = True
-		  Me.TextFont = "Consolas"
-		  Me.TextSize = 13.5
-		  
 		  
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub HotspotMouseDown(Position As Integer)
-		  Break
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub HotspotMouseUp(Position As Integer)
-		  Break
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub HotspotDoubleClicked(Position As Integer)
-		  Break
-		End Sub
+		Function ContextualMenuAction(hitItem as MenuItem) As Boolean
+		  MsgBox(hitItem.Text)
+		End Function
 	#tag EndEvent
 #tag EndEvents

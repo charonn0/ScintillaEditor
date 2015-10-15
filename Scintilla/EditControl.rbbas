@@ -110,7 +110,8 @@ Inherits Canvas
 		    mInitMacroDelayTimer.Period = 100
 		    mInitMacroDelayTimer.Mode = Timer.ModeSingle
 		  End If
-		  
+		  Canvas(Me).EraseBackground = False
+		  Canvas(Me).DoubleBuffer = False
 		  RaiseEvent Open()
 		End Sub
 	#tag EndEvent
@@ -248,7 +249,7 @@ Inherits Canvas
 		  Select Case EventCode
 		  Case WM_SIZE
 		    Dim r As REALbasic.Rect = GetClientRect(Me.Handle)
-		    Call SetWindowPos(mEditor.Handle, 0, r.Left, r.Top, r.Width, r.Height, SWP_SHOWWINDOW Or SWP_NOREDRAW Or SWP_NOZORDER Or SWP_NOMOVE)
+		    Call SetWindowPos(mEditor.Handle, 0, r.Left, r.Top, r.Width, r.Height, SWP_NOZORDER Or SWP_NOOWNERZORDER)
 		    
 		  Case Scintilla.SCN.CHARADDED
 		    RaiseEvent CharacterAdded(Chr(Notification.ch))
@@ -910,6 +911,9 @@ Inherits Canvas
 	#tag EndConstant
 
 	#tag Constant, Name = SWP_NOMOVE, Type = Double, Dynamic = False, Default = \"&h0002", Scope = Private
+	#tag EndConstant
+
+	#tag Constant, Name = SWP_NOOWNERZORDER, Type = Double, Dynamic = False, Default = \"&h0200", Scope = Private
 	#tag EndConstant
 
 	#tag Constant, Name = SWP_NOREDRAW, Type = Double, Dynamic = False, Default = \"&h0008", Scope = Private
