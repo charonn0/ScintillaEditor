@@ -436,10 +436,15 @@ End
 		Sub Find(SciRef As Scintilla.EditControl, Pattern As String = "")
 		  Me.SciRef = SciRef
 		  TextField1.Text = Pattern
+		  'SciRef.Searcher.TargetWholeDocument
 		  Me.ShowModal
 		End Sub
 	#tag EndMethod
 
+
+	#tag Property, Flags = &h21
+		Private mSearchPos As Integer = -1
+	#tag EndProperty
 
 	#tag Property, Flags = &h21
 		Private SciRef As Scintilla.EditControl
@@ -451,15 +456,21 @@ End
 #tag Events PushButton1
 	#tag Event
 		Sub Action()
-		  Dim i As Integer = SciRef.Searcher.FindInDocument(TextField1.Text)
-		  If i > -1 Then
-		    Dim endpos As Integer = TextField1.Text.Len + i
-		    SciRef.SelStart = i
+		  If mSearchPos >= 0 Then
+		    mSearchPos = SciRef.Searcher.FindNext(TextField1.Text)
+		  Else
+		    mSearchPos = SciRef.Searcher.FindFirst(TextField1.Text)
+		  End If
+		  
+		  If mSearchPos > -1 Then
+		    Dim endpos As Integer = TextField1.Text.Len + mSearchPos
+		    SciRef.SelStart = mSearchPos
 		    SciRef.SelEnd = endpos
-		    SciRef.ScrollPosition.ScrollToRange(i, endpos)
+		    SciRef.ScrollPosition.ScrollToRange(mSearchPos, endpos)
 		  Else
 		    MsgBox("Pattern not found")
 		  End If
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
