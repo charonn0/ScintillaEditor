@@ -352,7 +352,7 @@ End
 
 #tag WindowCode
 	#tag Method, Flags = &h0
-		Function SelectFont(StyleRef As Scintilla.Managers.Style) As Boolean
+		Function SelectFont(ByRef StyleRef As Scintilla.Managers.Style) As Boolean
 		  mBold = StyleRef.Bold
 		  mItalic = StyleRef.Italic
 		  mUnderline = StyleRef.Underline
@@ -360,6 +360,7 @@ End
 		  mFontSize = StyleRef.TextSize
 		  mFontColor = StyleRef.TextColor
 		  mFontBack = StyleRef.Background
+		  mStyleRef = StyleRef
 		  Me.ShowModal
 		  Return mChanged
 		End Function
@@ -420,6 +421,10 @@ End
 		Protected mPreview As Picture
 	#tag EndProperty
 
+	#tag Property, Flags = &h21
+		Private mStyleRef As Scintilla.Managers.Style
+	#tag EndProperty
+
 	#tag Property, Flags = &h1
 		Protected mUnderline As Boolean
 	#tag EndProperty
@@ -430,7 +435,7 @@ End
 #tag Events FontList
 	#tag Event
 		Sub Change()
-		  If Me.ListIndex <> 0 Then 
+		  If Me.ListIndex <> 0 Then
 		    mFontName = Me.Text
 		    SetFont()
 		  End If
@@ -459,13 +464,28 @@ End
 	#tag EndEvent
 	#tag Event
 		Function CellTextPaint(g As Graphics, row As Integer, column As Integer, x as Integer, y as Integer) As Boolean
-		  If Me.ListIndex <> 0 Then 
+		  If Me.ListIndex <> 0 Then
 		    Dim nm As String = Me.Cell(row, 0)
 		    g.TextFont = nm
 		    g.DrawString(nm, x, y)
 		    Return True
 		  End If
 		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events OKButton
+	#tag Event
+		Sub Action()
+		  mStyleRef.Bold = mBold
+		  mStyleRef.Italic = mItalic
+		  mStyleRef.Underline = mUnderline
+		  mStyleRef.TextFont = mFontName
+		  mStyleRef.TextSize = mFontSize
+		  mStyleRef.TextColor = mFontColor
+		  mStyleRef.Background = mFontBack
+		  mChanged = True
+		  Self.Close
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events ComboBox1
@@ -478,7 +498,7 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub Change()
-		  If Me.ListIndex <> 0 Then 
+		  If Me.ListIndex <> 0 Then
 		    mFontSize = Val(Me.Text)
 		    SetFont()
 		  End If
@@ -530,7 +550,7 @@ End
 		  Dim r As New REALbasic.Rect(Me.Left, Me.Top, Me.Width, Me.Height)
 		  If r.Contains(p) Then
 		    Dim c As Color = mFontColor
-		    If SelectColor(c, "Select text color") Then 
+		    If SelectColor(c, "Select text color") Then
 		      mFontColor = c
 		      SetFont()
 		    End If

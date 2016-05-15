@@ -39,7 +39,7 @@ Begin Window SciLexerDemo
       Enabled         =   True
       EOLVisible      =   True
       EraseBackground =   True
-      Height          =   324
+      Height          =   292
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -53,6 +53,7 @@ Begin Window SciLexerDemo
       MarginWidths    =   16,16,0,0,0
       Overtype        =   False
       ReadOnly        =   False
+      RecordMacro     =   ""
       Scope           =   1
       SelEnd          =   ""
       SelStart        =   ""
@@ -69,6 +70,37 @@ Begin Window SciLexerDemo
       Visible         =   True
       Width           =   486
       WrapLines       =   True
+   End
+   Begin PushButton PushButton1
+      AutoDeactivate  =   True
+      Bold            =   ""
+      ButtonStyle     =   0
+      Cancel          =   ""
+      Caption         =   "Untitled"
+      Default         =   ""
+      Enabled         =   True
+      Height          =   22
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   ""
+      Left            =   203
+      LockBottom      =   ""
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   ""
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   1
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0
+      TextUnit        =   0
+      Top             =   304
+      Underline       =   ""
+      Visible         =   True
+      Width           =   80
    End
 End
 #tag EndWindow
@@ -195,7 +227,9 @@ End
 
 	#tag MenuHandler
 		Function FontMenu() As Boolean Handles FontMenu.Action
-			Call FontSelect.SelectFont(EditControl1.Style(0))
+			Dim s As Scintilla.Managers.Style = EditControl1.Style(1)
+			Call FontSelect.SelectFont(s)
+			EditControl1.SetRangeStyle(10, 20, s.StyleNumber)
 			Return True
 			
 		End Function
