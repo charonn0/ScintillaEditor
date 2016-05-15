@@ -220,7 +220,12 @@ Inherits Canvas
 		Private Sub mInitMacroDelayTimerActionHandler(Sender As Timer)
 		  #pragma Unused Sender
 		  Me.PlayMacro(mInitMacro)
-		  'Call mInitMacro.Save(SpecialFolder.Desktop.Child("init.bsm"))
+		  #If DUMP_INIT_MACRO Then
+		    Dim s As String = mInitMacro.ToString
+		    Dim bs As BinaryStream = BinaryStream.Create(SpecialFolder.Desktop.Child("init.json"), True)
+		    bs.Write(s)
+		    bs.Close
+		  #EndIf
 		  mInitMacro = Nil
 		End Sub
 	#tag EndMethod
@@ -842,6 +847,9 @@ Inherits Canvas
 		WrapLines As Boolean
 	#tag EndComputedProperty
 
+
+	#tag Constant, Name = DUMP_INIT_MACRO, Type = Boolean, Dynamic = False, Default = \"True", Scope = Private
+	#tag EndConstant
 
 	#tag Constant, Name = SCEN_CHANGE, Type = Double, Dynamic = False, Default = \"768", Scope = Private
 	#tag EndConstant
