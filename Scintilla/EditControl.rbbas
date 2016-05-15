@@ -10,7 +10,7 @@ Inherits Canvas
 
 	#tag Event
 		Sub DoubleClick(X As Integer, Y As Integer)
-		  ' This event is not raised by the superclass
+		  ' This event is to be ignored
 		  #pragma Unused X
 		  #pragma Unused Y
 		End Sub
@@ -18,7 +18,7 @@ Inherits Canvas
 
 	#tag Event
 		Function DragEnter(obj As DragItem, action As Integer) As Boolean
-		  ' This event is not raised by the superclass
+		  ' This event is to be ignored
 		  #pragma Unused obj
 		  #pragma Unused action
 		End Function
@@ -26,7 +26,7 @@ Inherits Canvas
 
 	#tag Event
 		Sub DragExit(obj As DragItem, action As Integer)
-		  ' This event is not raised by the superclass
+		  ' This event is to be ignored
 		  #pragma Unused obj
 		  #pragma Unused action
 		End Sub
@@ -34,7 +34,7 @@ Inherits Canvas
 
 	#tag Event
 		Function DragOver(x As Integer, y As Integer, obj As DragItem, action As Integer) As Boolean
-		  ' This event is not raised by the superclass
+		  ' This event is to be ignored
 		  #pragma Unused obj
 		  #pragma Unused action
 		  #pragma Unused x
@@ -44,7 +44,7 @@ Inherits Canvas
 
 	#tag Event
 		Sub DropObject(obj As DragItem, action As Integer)
-		  ' This event is not raised by the superclass
+		  ' This event is to be ignored
 		  #pragma Unused obj
 		  #pragma Unused action
 		End Sub
@@ -52,21 +52,21 @@ Inherits Canvas
 
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
-		  ' This event is not raised by the superclass
+		  ' This event is to be ignored
 		  #pragma Unused Key
 		End Function
 	#tag EndEvent
 
 	#tag Event
 		Sub KeyUp(Key As String)
-		  ' This event is not raised by the superclass
+		  ' This event is to be ignored
 		  #pragma Unused Key
 		End Sub
 	#tag EndEvent
 
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  ' This event is not raised by the superclass
+		  ' This event is to be ignored
 		  #pragma Unused X
 		  #pragma Unused Y
 		End Function
@@ -74,7 +74,7 @@ Inherits Canvas
 
 	#tag Event
 		Sub MouseDrag(X As Integer, Y As Integer)
-		  ' This event is not raised by the superclass
+		  ' This event is to be ignored
 		  #pragma Unused X
 		  #pragma Unused Y
 		End Sub
@@ -82,7 +82,7 @@ Inherits Canvas
 
 	#tag Event
 		Sub MouseUp(X As Integer, Y As Integer)
-		  ' This event is not raised by the superclass
+		  ' This event is to be ignored
 		  #pragma Unused X
 		  #pragma Unused Y
 		End Sub
@@ -90,7 +90,7 @@ Inherits Canvas
 
 	#tag Event
 		Function MouseWheel(X As Integer, Y As Integer, deltaX as Integer, deltaY as Integer) As Boolean
-		  ' This event is not raised by the superclass
+		  ' This event is to be ignored
 		  #pragma Unused X
 		  #pragma Unused Y
 		  #pragma Unused deltaX
@@ -118,7 +118,7 @@ Inherits Canvas
 
 	#tag Event
 		Sub Paint(g As Graphics)
-		  ' This event is not raised by the superclass
+		  ' This event is to be ignored
 		  #pragma Unused g
 		  
 		End Sub

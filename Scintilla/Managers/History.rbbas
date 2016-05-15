@@ -22,7 +22,7 @@ Inherits Scintilla.Managers.BaseManager
 		  ' as un/redoable (e.g. toggling a bookmark.)
 		  ' Undo/redo actions added via this method DO affect ScintillaEditor.Dirty and ScintillaEditor.SavePointReached/SavePointLeft.
 		  ' If MayCoalesce=True, the action being added MAY be coalesced with an adjacent document action.
-		  ' See: http://www.scintilla.org/ScintillaDoc.html#Scintilla.SCI.ADDUNDOACTION
+		  ' See: http://www.scintilla.org/ScintillaDoc.html#SCI_ADDUNDOACTION
 		  
 		  Call Me.SendMessage(Scintilla.SCI.ADDUNDOACTION, Tag, MayCoalesce)
 		End Sub

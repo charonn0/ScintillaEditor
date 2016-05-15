@@ -12,7 +12,6 @@ Protected Module Scintilla
 		Private Soft Declare Function EnableWindow Lib "User32" (HWND As Integer, Enable As Boolean) As Boolean
 	#tag EndExternalMethod
 
-
 	#tag ExternalMethod, Flags = &h21
 		Private Soft Declare Function FormatMessageA Lib "Kernel32" (dwFlags As Integer, lpSource As Integer, dwMessageId As Integer, dwLanguageId As Integer, lpBuffer As ptr, nSize As Integer, Arguments As Integer) As Integer
 	#tag EndExternalMethod
@@ -175,15 +174,6 @@ Protected Module Scintilla
 	#tag ExternalMethod, Flags = &h21
 		Private Soft Declare Function SetWindowPos Lib "User32" (HWND As Integer, HWNDInsertAfter As Integer, X As Integer, Y As Integer, cX As Integer, cY As Integer, Flags As Integer) As Boolean
 	#tag EndExternalMethod
-
-
-	#tag Property, Flags = &h21
-		Private Subclasses() As Dictionary
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private WndProcs As Dictionary
-	#tag EndProperty
 
 
 	#tag Constant, Name = ERR_BAD_MACRO_ACTION, Type = Double, Dynamic = False, Default = \"-106", Scope = Protected
