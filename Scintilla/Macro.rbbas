@@ -22,13 +22,30 @@ Protected Class Macro
 	#tag Method, Flags = &h0
 		 Shared Function Load(LoadFrom As FolderItem) As Scintilla.Macro
 		  Dim bs As BinaryStream = BinaryStream.Open(LoadFrom)
-		  Dim data As MemoryBlock = bs.Read(bs.Length)
+		  Dim m As Scintilla.Macro = Scintilla.Macro.Load(bs)
 		  bs.Close
+		  Return m
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		 Shared Function Load(LoadFrom As MemoryBlock) As Scintilla.Macro
+		  Dim bs As New BinaryStream(LoadFrom)
+		  Return Scintilla.Macro.Load(bs)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		 Shared Function Load(LoadFrom As Readable) As Scintilla.Macro
+		  Dim data As MemoryBlock = ""
+		  While Not LoadFrom.EOF
+		    data = data + LoadFrom.Read(4096)
+		  Wend
 		  Dim js As JSONItem
 		  Try
 		    js = New JSONItem(Data)
 		  Catch
-		    Raise New RuntimeException 'ERR_BAD_MACRO_DATA)
+		    Return Nil
 		  End Try
 		  Return New Scintilla.Macro(js)
 		End Function
@@ -123,20 +140,11 @@ Protected Class Macro
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Save(SaveTo As FolderItem) As Boolean
-		  ' Saves the macro to the specified file. Files saved with this method may be passed to Scintilla.Macro.Load.
-		  
-		  If Messages = Nil Or Messages.Count = 0 Then Return False
-		  Dim out As BinaryStream = BinaryStream.Create(SaveTo)
-		  Try
-		    out.Write(Messages.ToString)
-		  Catch
-		    Raise New RuntimeException 'ERR_BAD_MACRO_OBJECT)
-		  Finally
-		    out.Close
-		  End Try
-		  Return True
-		  
+		Function ToString(Compact As Boolean = True) As String
+		  If Messages <> Nil Then
+		    Messages.Compact = Compact
+		    Return Messages.ToString
+		  End If
 		End Function
 	#tag EndMethod
 
@@ -157,7 +165,7 @@ Protected Class Macro
 		  ' End If
 		  
 		  If Index > -1 And Index <= Messages.Count - 1 Then Return Messages.Value(Index)
-		  Raise New RuntimeException 'ERR_BAD_MACRO_INDEX)
+		  Raise New OutOfBoundsException
 		End Function
 	#tag EndMethod
 
