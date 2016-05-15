@@ -372,6 +372,23 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub SetRangeStyle(StartPosition As Integer, EndPosition As Integer, StyleNumber As Integer)
+		  Dim oldcarat, oldanchor As Integer
+		  oldcarat = Me.TextSelection.Caret
+		  oldanchor = Me.TextSelection.Anchor
+		  If StartPosition > -1 Then
+		    Me.TextSelection.Caret = StartPosition
+		  End If
+		  If EndPosition > -1 Then
+		    Me.TextSelection.Anchor = EndPosition
+		  End If
+		  Me.TextSelection.Style = Me.Style(StyleNumber)
+		  Me.TextSelection.Caret = oldcarat
+		  Me.TextSelection.Anchor = oldanchor
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function Style(StyleNumber As Integer) As Scintilla.Managers.Style
 		  Return New Scintilla.Managers.Style(Me, StyleNumber)
 		End Function
