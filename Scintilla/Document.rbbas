@@ -15,18 +15,15 @@ Protected Class Document
 	#tag Method, Flags = &h0
 		Sub Constructor(InitialOwner As Scintilla.Editor, DocumentRef As Ptr)
 		  If InitialOwner = Nil Then Raise New NilObjectException
+		  If DocumentRef = Nil Then Raise New NilObjectException
 		  mOwner = InitialOwner
-		  If DocumentRef = Nil Then
-		    Me.Constructor(InitialOwner)
+		  Dim err As Integer = mOwner.SendMessage(Scintilla.SCI.ADDREFDOCUMENT, Nil, DocumentRef)
+		  If err = 0 Then
+		    mDocument = DocumentRef
 		  Else
-		    Dim err As Integer = mOwner.SendMessage(Scintilla.SCI.ADDREFDOCUMENT, Nil, DocumentRef)
-		    If err = 0 Then
-		      mDocument = DocumentRef
-		    Else
-		      Dim error As New NilObjectException
-		      error.ErrorNumber = err
-		      Raise error
-		    End If
+		    Dim error As New NilObjectException
+		    error.ErrorNumber = err
+		    Raise error
 		  End If
 		End Sub
 	#tag EndMethod
@@ -40,7 +37,7 @@ Protected Class Document
 		  If doc <> 0 Then
 		    mDocument = Ptr(doc)
 		  Else
-		    Raise New NilObjectException
+		    Raise New Scintilla.ScintillaException(mOwner.LastError)
 		  End If
 		End Sub
 	#tag EndMethod
