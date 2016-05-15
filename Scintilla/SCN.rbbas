@@ -36,6 +36,9 @@ Protected Module SCN
 	#tag Constant, Name = CHARADDED, Type = Double, Dynamic = False, Default = \"2001", Scope = Protected
 	#tag EndConstant
 
+	#tag Constant, Name = DOUBLECLICK, Type = Double, Dynamic = False, Default = \"2006", Scope = Protected
+	#tag EndConstant
+
 	#tag Constant, Name = DWELLEND, Type = Double, Dynamic = False, Default = \"2017", Scope = Protected
 	#tag EndConstant
 

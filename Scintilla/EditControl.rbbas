@@ -285,6 +285,9 @@ Inherits Canvas
 		  Case Scintilla.SCN.STYLENEEDED
 		    'Break
 		    
+		  Case Scintilla.SCN.DOUBLECLICK
+		    RaiseEvent DoubleClick(Notification.Position, Notification.line, Notification.Modifiers)
+		    
 		  Case Scintilla.SCN.MACRORECORD
 		    RaiseEvent MacroRecord(Notification.Message, Notification.wParam, Notification.LParam)
 		    
@@ -397,7 +400,7 @@ Inherits Canvas
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event DoubleClick(X As Integer, Y As Integer)
+		Event DoubleClick(Position As Integer, LineNumber As Integer, Modifiers As Integer)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
