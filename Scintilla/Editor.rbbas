@@ -137,15 +137,14 @@ Protected Class Editor
 		  Dim notification As SCNotification
 		  Select Case msg
 		  Case WM_NOTIFY
-		    Dim data As MemoryBlock = lParam
-		    notification.StringValue(TargetLittleEndian) = data.StringValue(0, SCNotification.Size)
+		    notification = lparam.SCNotification
 		    RaiseEvent ScintillaEvent(Notification.Code, Notification)
 		    Return True
 		  Case WM_SIZE
 		    RaiseEvent ScintillaEvent(msg, notification)
-		  Else
-		    'Case WM_DROPFILES
-		    System.DebugLog("Window message: &h" + Hex(msg))
+		    'Else
+		    ''Case WM_DROPFILES
+		    'System.DebugLog("Window message: &h" + Hex(msg))
 		  End Select
 		End Function
 	#tag EndMethod
