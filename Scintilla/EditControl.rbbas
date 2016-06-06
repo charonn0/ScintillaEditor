@@ -112,7 +112,6 @@ Inherits Canvas
 		  End If
 		  Canvas(Me).EraseBackground = False
 		  Canvas(Me).DoubleBuffer = False
-		  RaiseEvent Open()
 		End Sub
 	#tag EndEvent
 
@@ -227,6 +226,7 @@ Inherits Canvas
 		    bs.Close
 		  #EndIf
 		  mInitMacro = Nil
+		  RaiseEvent Open()
 		End Sub
 	#tag EndMethod
 
@@ -313,17 +313,8 @@ Inherits Canvas
 		      RaiseEvent LineStateChanged(Notification.Line)
 		    End If
 		    
-		    'Case Scintilla.SCN.PAINTED
-		    'If mLastRect = Nil Then mLastRect = New REALbasic.Rect(Me.Left, Me.Top, Me.Width, Me.Height)
-		    'Dim now As New REALbasic.Rect(Me.Left, Me.Top, Me.Width, Me.Height)
-		    '
-		    'If mLastRect.Left <> now.Left Or _
-		    'mLastRect.Top <> now.Top Or _
-		    'mLastRect.Width <> now.Width Or _
-		    'mLastRect.Height <> now.Height Then
-		    'mLastRect = now
-		    'Call SetWindowPos(mEditor.Handle, 0, now.Left, now.Top, now.Width, now.Height, SWP_SHOWWINDOW Or SWP_NOREDRAW Or SWP_NOZORDER Or SWP_NOMOVE)
-		    'End If
+		  Case Scintilla.SCN.PAINTED
+		    RaiseEvent Painted()
 		    
 		  Case Scintilla.SCN.UPDATEUI
 		    
@@ -996,7 +987,7 @@ Inherits Canvas
 			Name="BackColor"
 			Visible=true
 			Group="Behavior"
-			InitialValue="&cFFFFFF"
+			InitialValue="&c000000"
 			Type="Color"
 		#tag EndViewProperty
 		#tag ViewProperty
