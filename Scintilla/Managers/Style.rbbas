@@ -11,6 +11,19 @@ Inherits Scintilla.Managers.BaseManager
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub CopyTo(DuplicateStyle As Scintilla.Managers.Style)
+		  DuplicateStyle.Background = Me.Background
+		  DuplicateStyle.Bold = Me.Bold
+		  DuplicateStyle.Hotspot = Me.Hotspot
+		  DuplicateStyle.Italic = Me.Italic
+		  DuplicateStyle.TextColor = Me.TextColor
+		  DuplicateStyle.TextFont = Me.TextFont
+		  DuplicateStyle.TextSize = Me.TextSize
+		  DuplicateStyle.Underline = Me.Underline
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function Field() As Scintilla.EditControl
 		  Return Super.Field
 		End Function
