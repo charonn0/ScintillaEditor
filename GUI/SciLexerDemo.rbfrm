@@ -215,7 +215,30 @@ End
 
 	#tag MenuHandler
 		Function NewDocumentItem() As Boolean Handles NewDocumentItem.Action
+			If EditControl1.Dirty Then
+			Dim msg, ttl As String
+			If ActiveFile = Nil Then
+			msg = "Save new file?"
+			ttl = "Unsaved document"
+			Else
+			msg = "Save changes?"
+			ttl = "Unsaved changes"
+			End If
+			
+			Select Case MsgBox(msg, 48 + 3, ttl)
+			Case 6 ' Yes
+			SaveDocument()
+			
+			Case 7 ' No
+			
+			Else ' Cancel
+			Return True
+			
+			End Select
+			End If
+			
 			Dim document As Scintilla.Document = EditControl1.CreateDocument
+			document.Text = "Hello, world!"
 			EditControl1.CurrentDocument = document
 			Return True
 			
