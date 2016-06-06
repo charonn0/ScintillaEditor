@@ -344,7 +344,8 @@ Inherits Canvas
 
 	#tag Method, Flags = &h0
 		Function Searcher() As Scintilla.Managers.FindReplace
-		  Return New Scintilla.Managers.FindReplace(Me)
+		  If mSearchEngine = Nil Then mSearchEngine = New Scintilla.Managers.FindReplace(Me)
+		  Return mSearchEngine
 		End Function
 	#tag EndMethod
 
@@ -390,7 +391,10 @@ Inherits Canvas
 
 	#tag Method, Flags = &h0
 		Function Style(StyleNumber As Integer) As Scintilla.Managers.Style
-		  Return New Scintilla.Managers.Style(Me, StyleNumber)
+		  If mStyles = Nil Then mStyles = New Dictionary(0:New Scintilla.Managers.Style(Me, 0))
+		  If Not mStyles.HasKey(StyleNumber) Then mStyles.Value(StyleNumber) = New Scintilla.Managers.Style(Me, StyleNumber)
+		  Return mStyles.Value(StyleNumber)
+		  
 		End Function
 	#tag EndMethod
 
@@ -459,6 +463,10 @@ Inherits Canvas
 
 	#tag Hook, Flags = &h0
 		Event Open()
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event Painted()
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
@@ -686,6 +694,14 @@ Inherits Canvas
 
 	#tag Property, Flags = &h21
 		Private mRecordMacro As Boolean
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private mSearchEngine As Scintilla.Managers.FindReplace
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private mStyles As Dictionary
 	#tag EndProperty
 
 	#tag Property, Flags = &h21

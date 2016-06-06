@@ -108,10 +108,10 @@ Begin Menu ScintillaMenu
       End
       Begin MenuItem SearchItem
          SpecialMenu = 0
-         Text = "Find..."
+         Text = "&Find..."
          Index = -2147483648
-         ShortcutKey = "&F"
-         Shortcut = "Cmd+&F"
+         ShortcutKey = "F"
+         Shortcut = "Cmd+F"
          MenuModifier = True
          AutoEnable = True
       End

@@ -2,46 +2,41 @@
 Protected Class FindReplace
 Inherits Scintilla.Managers.BaseManager
 	#tag Method, Flags = &h0
-		Function FindFirst(SearchPattern As String) As Integer
-		  Return Me.SendMessage(Scintilla.SCI.SEARCHINTARGET, SearchPattern.LenB, SearchPattern)
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Function FindInDocument(SearchPattern As String, Start As Integer = 0, Finish As Integer = - 1) As Integer
-		  Call Me.SendMessage(Scintilla.SCI.TARGETFROMSELECTION, Nil, Nil)
-		  Return Me.FindFirst(SearchPattern)
+		  Dim mb As New MemoryBlock(SearchPattern.LenB)
+		  mb.StringValue(0, mb.Size) = SearchPattern
+		  mCurrentPattern = SearchPattern
+		  
+		  If Finish = -1 Then EndPosition = Me.Field.Text.Len Else EndPosition = Finish
+		  StartPosition = Start
+		  Return Me.SendMessage(Scintilla.SCI.SEARCHINTARGET, SearchPattern.LenB, mb)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function FindInSelection(SearchPattern As String) As Integer
 		  ' Sets the start and end positions to the current selection, if any
+		  Dim mb As New MemoryBlock(SearchPattern.LenB)
+		  mb.StringValue(0, mb.Size) = SearchPattern
+		  mCurrentPattern = SearchPattern
 		  Call Me.SendMessage(Scintilla.SCI.TARGETFROMSELECTION)
-		  Return Me.FindFirst(SearchPattern)
+		  Return Me.SendMessage(Scintilla.SCI.SEARCHINTARGET, SearchPattern.LenB, mb)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function FindNext(SearchPattern As String) As Integer
-		  Call Me.SendMessage(Scintilla.SCI.SEARCHANCHOR)
-		  Return Me.SendMessage(Scintilla.SCI.SEARCHNEXT, Me.Flags, SearchPattern)
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function FindPrev(SearchPattern As String) As Integer
-		  Call Me.SendMessage(Scintilla.SCI.SEARCHANCHOR)
-		  Return Me.SendMessage(Scintilla.SCI.SEARCHPREV, Me.Flags, SearchPattern)
+		Function GetTargetText() As String
+		  Return Me.Field.Text.Mid(StartPosition, EndPosition - StartPosition)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function Replace(ReplaceWith As String) As Integer
+		  Dim mb As MemoryBlock = ReplaceWith
 		  If Not Me.RegExMode Then
-		    Return Me.SendMessage(Scintilla.SCI.REPLACETARGET, ReplaceWith.LenB, ReplaceWith)
+		    Return Me.SendMessage(Scintilla.SCI.REPLACETARGET, mb.Size, mb)
 		  Else
-		    Return Me.SendMessage(Scintilla.SCI.REPLACETARGETRE, ReplaceWith.LenB, ReplaceWith)
+		    Return Me.SendMessage(Scintilla.SCI.REPLACETARGETRE, mb.Size, mb)
 		  End If
 		End Function
 	#tag EndMethod
@@ -93,6 +88,10 @@ Inherits Scintilla.Managers.BaseManager
 		#tag EndSetter
 		MatchCase As Boolean
 	#tag EndComputedProperty
+
+	#tag Property, Flags = &h21
+		Private mCurrentPattern As String
+	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter

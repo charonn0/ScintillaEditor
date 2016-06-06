@@ -281,12 +281,10 @@ End
 
 	#tag MenuHandler
 		Function SearchItem() As Boolean Handles SearchItem.Action
-			'Dim fr As New SearchWindow
-			'fr.Find(EditControl1)
-			'Break
-			Dim s As String = "redraw"
-			s = ConvertEncoding(s, Encodings.UTF8)
-			Dim i As Integer = EditControl1.Searcher.FindInDocument(s)
+			Dim w As New FindReplaceWindow
+			EditControl1.Searcher.StartPosition = EditControl1.SelStart
+			EditControl1.Searcher.EndPosition = EditControl1.SelEnd
+			w.Find(EditControl1)
 			Return True
 			
 		End Function

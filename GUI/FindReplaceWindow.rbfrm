@@ -1,13 +1,13 @@
 #tag Window
-Begin Window SearchWindow
-   BackColor       =   16777215
+Begin Window FindReplaceWindow
+   BackColor       =   &hFFFFFF
    Backdrop        =   ""
    CloseButton     =   True
    Composite       =   False
    Frame           =   0
    FullScreen      =   False
    HasBackColor    =   False
-   Height          =   150
+   Height          =   1.22e+2
    ImplicitInstance=   False
    LiveResize      =   True
    MacProcID       =   0
@@ -17,19 +17,19 @@ Begin Window SearchWindow
    MenuBar         =   ""
    MenuBarVisible  =   True
    MinHeight       =   64
-   MinimizeButton  =   True
+   MinimizeButton  =   False
    MinWidth        =   64
    Placement       =   1
-   Resizeable      =   True
-   Title           =   "Search & Replace"
+   Resizeable      =   False
+   Title           =   "Find & Replace"
    Visible         =   True
-   Width           =   400
-   Begin TextField TextField1
+   Width           =   3.84e+2
+   Begin TextField SearchPattern
       AcceptTabs      =   ""
       Alignment       =   0
       AutoDeactivate  =   True
       AutomaticallyCheckSpelling=   False
-      BackColor       =   16777215
+      BackColor       =   &hFFFFFF
       Bold            =   ""
       Border          =   True
       CueText         =   ""
@@ -41,7 +41,7 @@ Begin Window SearchWindow
       HelpTag         =   ""
       Index           =   -2147483648
       Italic          =   ""
-      Left            =   70
+      Left            =   68
       LimitText       =   0
       LockBottom      =   ""
       LockedInPosition=   False
@@ -56,15 +56,15 @@ Begin Window SearchWindow
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   ""
-      TextColor       =   0
+      TextColor       =   &h000000
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   7
+      Top             =   8
       Underline       =   ""
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   318
+      Width           =   309
    End
    Begin Label Label1
       AutoDeactivate  =   True
@@ -77,7 +77,7 @@ Begin Window SearchWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   11
+      Left            =   8
       LockBottom      =   ""
       LockedInPosition=   False
       LockLeft        =   True
@@ -86,26 +86,26 @@ Begin Window SearchWindow
       Multiline       =   ""
       Scope           =   0
       Selectable      =   False
-      TabIndex        =   10
+      TabIndex        =   8
       TabPanelIndex   =   0
-      Text            =   "Search:"
+      Text            =   "Find:"
       TextAlign       =   2
-      TextColor       =   0
+      TextColor       =   &h000000
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   8
+      Top             =   9
       Transparent     =   False
       Underline       =   ""
       Visible         =   True
-      Width           =   54
+      Width           =   56
    End
-   Begin TextField TextField2
+   Begin TextField ReplacePattern
       AcceptTabs      =   ""
       Alignment       =   0
       AutoDeactivate  =   True
       AutomaticallyCheckSpelling=   False
-      BackColor       =   16777215
+      BackColor       =   &hFFFFFF
       Bold            =   ""
       Border          =   True
       CueText         =   ""
@@ -117,7 +117,7 @@ Begin Window SearchWindow
       HelpTag         =   ""
       Index           =   -2147483648
       Italic          =   ""
-      Left            =   70
+      Left            =   68
       LimitText       =   0
       LockBottom      =   ""
       LockedInPosition=   False
@@ -132,15 +132,15 @@ Begin Window SearchWindow
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   ""
-      TextColor       =   0
+      TextColor       =   &h000000
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   36
+      Top             =   33
       Underline       =   ""
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   318
+      Width           =   309
    End
    Begin Label Label2
       AutoDeactivate  =   True
@@ -153,7 +153,7 @@ Begin Window SearchWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   11
+      Left            =   8
       LockBottom      =   ""
       LockedInPosition=   False
       LockLeft        =   True
@@ -162,24 +162,117 @@ Begin Window SearchWindow
       Multiline       =   ""
       Scope           =   0
       Selectable      =   False
-      TabIndex        =   11
+      TabIndex        =   9
       TabPanelIndex   =   0
-      Text            =   "Replace"
+      Text            =   "Replace:"
       TextAlign       =   2
-      TextColor       =   0
+      TextColor       =   &h000000
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   37
+      Top             =   34
       Transparent     =   False
       Underline       =   ""
       Visible         =   True
-      Width           =   54
+      Width           =   56
    End
-   Begin CheckBox CheckBox1
+   Begin PushButton FindNext
       AutoDeactivate  =   True
       Bold            =   ""
-      Caption         =   "Whole Word"
+      ButtonStyle     =   0
+      Cancel          =   ""
+      Caption         =   "Find Next"
+      Default         =   True
+      Enabled         =   True
+      Height          =   22
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   ""
+      Left            =   284
+      LockBottom      =   ""
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   ""
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   5
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0
+      TextUnit        =   0
+      Top             =   94
+      Underline       =   ""
+      Visible         =   True
+      Width           =   80
+   End
+   Begin PushButton FindPrev
+      AutoDeactivate  =   True
+      Bold            =   ""
+      ButtonStyle     =   0
+      Cancel          =   ""
+      Caption         =   "Find Prev"
+      Default         =   ""
+      Enabled         =   True
+      Height          =   22
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   ""
+      Left            =   202
+      LockBottom      =   ""
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   ""
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   6
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0
+      TextUnit        =   0
+      Top             =   -63
+      Underline       =   ""
+      Visible         =   True
+      Width           =   80
+   End
+   Begin PushButton Replace
+      AutoDeactivate  =   True
+      Bold            =   ""
+      ButtonStyle     =   0
+      Cancel          =   ""
+      Caption         =   "Replace"
+      Default         =   ""
+      Enabled         =   True
+      Height          =   22
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   ""
+      Left            =   202
+      LockBottom      =   ""
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   ""
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   7
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0
+      TextUnit        =   0
+      Top             =   94
+      Underline       =   ""
+      Visible         =   True
+      Width           =   80
+   End
+   Begin CheckBox MatchCase
+      AutoDeactivate  =   True
+      Bold            =   ""
+      Caption         =   "Match case"
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
@@ -188,7 +281,7 @@ Begin Window SearchWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   70
+      Left            =   20
       LockBottom      =   ""
       LockedInPosition=   False
       LockLeft        =   True
@@ -202,16 +295,16 @@ Begin Window SearchWindow
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   69
+      Top             =   62
       Underline       =   ""
       Value           =   False
       Visible         =   True
       Width           =   100
    End
-   Begin CheckBox CheckBox2
+   Begin CheckBox UseRegex
       AutoDeactivate  =   True
       Bold            =   ""
-      Caption         =   "Match Case"
+      Caption         =   "RegEx"
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
@@ -220,7 +313,7 @@ Begin Window SearchWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   70
+      Left            =   118
       LockBottom      =   ""
       LockedInPosition=   False
       LockLeft        =   True
@@ -234,16 +327,16 @@ Begin Window SearchWindow
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   89
+      Top             =   62
       Underline       =   ""
       Value           =   False
       Visible         =   True
-      Width           =   100
+      Width           =   66
    End
-   Begin CheckBox CheckBox3
+   Begin CheckBox WholeWord
       AutoDeactivate  =   True
       Bold            =   ""
-      Caption         =   "Use RegEx"
+      Caption         =   "Whole word"
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
@@ -252,39 +345,7 @@ Begin Window SearchWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   191
-      LockBottom      =   ""
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   ""
-      LockTop         =   True
-      Scope           =   0
-      State           =   0
-      TabIndex        =   5
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0
-      TextUnit        =   0
-      Top             =   89
-      Underline       =   ""
-      Value           =   False
-      Visible         =   True
-      Width           =   100
-   End
-   Begin CheckBox CheckBox4
-      AutoDeactivate  =   True
-      Bold            =   ""
-      Caption         =   "Search in selection"
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   ""
-      Left            =   191
+      Left            =   182
       LockBottom      =   ""
       LockedInPosition=   False
       LockLeft        =   True
@@ -298,18 +359,49 @@ Begin Window SearchWindow
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   69
+      Top             =   62
       Underline       =   ""
       Value           =   False
       Visible         =   True
-      Width           =   136
+      Width           =   100
+   End
+   Begin PushButton ReplaceAll
+      AutoDeactivate  =   True
+      Bold            =   ""
+      ButtonStyle     =   0
+      Cancel          =   ""
+      Caption         =   "Replace all"
+      Default         =   ""
+      Enabled         =   True
+      Height          =   22
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   ""
+      Left            =   121
+      LockBottom      =   ""
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   ""
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   10
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0
+      TextUnit        =   0
+      Top             =   94
+      Underline       =   ""
+      Visible         =   True
+      Width           =   80
    End
    Begin PushButton PushButton1
       AutoDeactivate  =   True
       Bold            =   ""
       ButtonStyle     =   0
-      Cancel          =   ""
-      Caption         =   "Find Next"
+      Cancel          =   True
+      Caption         =   "CLose"
       Default         =   ""
       Enabled         =   True
       Height          =   22
@@ -317,113 +409,20 @@ Begin Window SearchWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   289
+      Left            =   118
       LockBottom      =   ""
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   ""
       LockTop         =   True
       Scope           =   0
-      TabIndex        =   6
+      TabIndex        =   11
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   121
-      Underline       =   ""
-      Visible         =   True
-      Width           =   80
-   End
-   Begin PushButton PushButton2
-      AutoDeactivate  =   True
-      Bold            =   ""
-      ButtonStyle     =   0
-      Cancel          =   ""
-      Caption         =   "Find Prev"
-      Default         =   ""
-      Enabled         =   True
-      Height          =   22
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   ""
-      Left            =   206
-      LockBottom      =   ""
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   ""
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   7
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0
-      TextUnit        =   0
-      Top             =   121
-      Underline       =   ""
-      Visible         =   True
-      Width           =   80
-   End
-   Begin PushButton PushButton3
-      AutoDeactivate  =   True
-      Bold            =   ""
-      ButtonStyle     =   0
-      Cancel          =   ""
-      Caption         =   "Replace All"
-      Default         =   ""
-      Enabled         =   True
-      Height          =   22
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   ""
-      Left            =   114
-      LockBottom      =   ""
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   ""
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   9
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0
-      TextUnit        =   0
-      Top             =   121
-      Underline       =   ""
-      Visible         =   True
-      Width           =   80
-   End
-   Begin PushButton PushButton4
-      AutoDeactivate  =   True
-      Bold            =   ""
-      ButtonStyle     =   0
-      Cancel          =   ""
-      Caption         =   "Replace"
-      Default         =   ""
-      Enabled         =   True
-      Height          =   22
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   ""
-      Left            =   31
-      LockBottom      =   ""
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   ""
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   8
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0
-      TextUnit        =   0
-      Top             =   121
+      Top             =   -63
       Underline       =   ""
       Visible         =   True
       Width           =   80
@@ -433,44 +432,126 @@ End
 
 #tag WindowCode
 	#tag Method, Flags = &h0
-		Sub Find(SciRef As Scintilla.EditControl, Pattern As String = "")
-		  Me.SciRef = SciRef
-		  TextField1.Text = Pattern
-		  'SciRef.Searcher.TargetWholeDocument
-		  Me.ShowModal
+		Sub Find(Editor As Scintilla.EditControl, InitialPattern As String = "", InitialReplacement As String = "")
+		  mEditor = Editor
+		  SearchPattern.Text = InitialPattern
+		  ReplacePattern.Text = InitialReplacement
+		  Me.Show
 		End Sub
 	#tag EndMethod
 
 
 	#tag Property, Flags = &h21
-		Private mSearchPos As Integer = -1
+		Private mEditor As Scintilla.EditControl
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private SciRef As Scintilla.EditControl
+		Private mLastSearchPos As Integer
 	#tag EndProperty
 
 
 #tag EndWindowCode
 
+#tag Events FindNext
+	#tag Event
+		Sub Action()
+		  Dim i As Integer = mEditor.Searcher.FindInDocument(SearchPattern.Text, mLastSearchPos)
+		  If i > -1 Then
+		    mEditor.TextSelection.Caret = i
+		    mEditor.TextSelection.Anchor = i + SearchPattern.Text.Len
+		    mEditor.ScrollPosition.ScrollToCaret
+		    mLastSearchPos = i + SearchPattern.Text.Len
+		  Else
+		    mEditor.Searcher.StartPosition = 0
+		    mEditor.Searcher.EndPosition = -1
+		    mLastSearchPos = 0
+		    MsgBox("Pattern not found.")
+		  End If
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events FindPrev
+	#tag Event
+		Sub Action()
+		  'Dim i As Integer = mEditor.Searcher.FindPrev(SearchPattern.Text, mLastSearchPos)
+		  'If i > -1 Then
+		  'mEditor.TextSelection.Caret = i
+		  'mEditor.TextSelection.Anchor = i + SearchPattern.Text.Len
+		  'mLastSearchPos = i
+		  'Else
+		  'MsgBox("Pattern not found.")
+		  'End If
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events Replace
+	#tag Event
+		Sub Action()
+		  Dim i As Integer = mEditor.Searcher.Replace(ReplacePattern.Text)
+		  If i > -1 Then
+		    mEditor.TextSelection.Caret = i
+		    mEditor.TextSelection.Anchor = i + ReplacePattern.Text.Len
+		  Else
+		    MsgBox("Pattern not found.")
+		    mEditor.Searcher.StartPosition = 0
+		    mEditor.Searcher.EndPosition = -1
+		    mLastSearchPos = 0
+		  End If
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events MatchCase
+	#tag Event
+		Sub Action()
+		  mEditor.Searcher.MatchCase = Me.Value
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events UseRegex
+	#tag Event
+		Sub Action()
+		  mEditor.Searcher.RegExMode = Me.Value
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events WholeWord
+	#tag Event
+		Sub Action()
+		  mEditor.Searcher.WholeWord = Me.Value
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events ReplaceAll
+	#tag Event
+		Sub Action()
+		  If SearchPattern.Text = "" Then Return
+		  Dim i As Integer
+		  mEditor.Searcher.StartPosition = 0
+		  mEditor.Searcher.EndPosition = -1
+		  Do
+		    i = mEditor.Searcher.FindInDocument(SearchPattern.Text, mLastSearchPos)
+		    If i > -1 Then
+		      mEditor.TextSelection.Caret = i
+		      mEditor.TextSelection.Anchor = i + SearchPattern.Text.Len
+		      mLastSearchPos = i + SearchPattern.Text.Len
+		      i = mEditor.Searcher.Replace(ReplacePattern.Text)
+		      If i > -1 Then
+		        mEditor.TextSelection.Caret = i
+		        mEditor.TextSelection.Anchor = i + ReplacePattern.Text.Len
+		      End If
+		    End If
+		  Loop Until i < 0
+		  
+		  mEditor.Searcher.StartPosition = 0
+		  mEditor.Searcher.EndPosition = -1
+		  mLastSearchPos = 0
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag Events PushButton1
 	#tag Event
 		Sub Action()
-		  If mSearchPos >= 0 Then
-		    mSearchPos = SciRef.Searcher.FindNext(TextField1.Text)
-		  Else
-		    mSearchPos = SciRef.Searcher.FindFirst(TextField1.Text)
-		  End If
-		  
-		  If mSearchPos > -1 Then
-		    Dim endpos As Integer = TextField1.Text.Len + mSearchPos
-		    SciRef.SelStart = mSearchPos
-		    SciRef.SelEnd = endpos
-		    SciRef.ScrollPosition.ScrollToRange(mSearchPos, endpos)
-		  Else
-		    MsgBox("Pattern not found")
-		  End If
-		  
+		  Self.Close
 		End Sub
 	#tag EndEvent
 #tag EndEvents
