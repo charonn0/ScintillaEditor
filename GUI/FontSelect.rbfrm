@@ -464,6 +464,7 @@ End
 	#tag EndEvent
 	#tag Event
 		Function CellTextPaint(g As Graphics, row As Integer, column As Integer, x as Integer, y as Integer) As Boolean
+		  #pragma Unused column
 		  If Me.ListIndex <> 0 Then
 		    Dim nm As String = Me.Cell(row, 0)
 		    g.TextFont = nm
