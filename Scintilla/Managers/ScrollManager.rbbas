@@ -43,7 +43,7 @@ Inherits Scintilla.Managers.BaseManager
 			  Call Me.SendMessage(Scintilla.SCI.SETHSCROLLBAR, value)
 			End Set
 		#tag EndSetter
-		HScollbarVisible As Boolean
+		HScrollbarVisible As Boolean
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -57,7 +57,7 @@ Inherits Scintilla.Managers.BaseManager
 			  Call Me.SendMessage(Scintilla.SCI.SETVSCROLLBAR, value)
 			End Set
 		#tag EndSetter
-		ScollbarVisible As Boolean
+		ScrollbarVisible As Boolean
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -71,7 +71,7 @@ Inherits Scintilla.Managers.BaseManager
 			  Call Me.SendMessage(Scintilla.SCI.SETENDATLASTLINE, value)
 			End Set
 		#tag EndSetter
-		ScollPastEnd As Boolean
+		ScrollPastEnd As Boolean
 	#tag EndComputedProperty
 
 
