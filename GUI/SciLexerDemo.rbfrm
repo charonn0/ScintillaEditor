@@ -214,6 +214,58 @@ End
 	#tag EndMenuHandler
 
 	#tag MenuHandler
+		Function MacroEndItem() As Boolean Handles MacroEndItem.Action
+			EditControl1.MacroStop
+			Return True
+			
+		End Function
+	#tag EndMenuHandler
+
+	#tag MenuHandler
+		Function MacroLoadItem() As Boolean Handles MacroLoadItem.Action
+			Dim f As FolderItem = GetOpenFolderItem(FileTypes1.RBScintillaMacroFile)
+			If f = Nil Then Return True
+			Try
+			mMacro = Scintilla.Macro.Load(f)
+			Catch Err As Scintilla.ScintillaException
+			MsgBox(Err.Message)
+			End Try
+			Return True
+			
+		End Function
+	#tag EndMenuHandler
+
+	#tag MenuHandler
+		Function MacroPlayItem() As Boolean Handles MacroPlayItem.Action
+			If mMacro <> Nil Then EditControl1.PlayMacro(mMacro)
+			Return True
+			
+		End Function
+	#tag EndMenuHandler
+
+	#tag MenuHandler
+		Function MacroSaveItem() As Boolean Handles MacroSaveItem.Action
+			If mMacro = Nil Then Return True
+			Dim f As FolderItem = GetSaveFolderItem(FileTypes1.RBScintillaMacroFile, "NewMacro.bsm")
+			If f = Nil Then Return True
+			Dim data As String = mMacro.ToString(True)
+			Dim bs As BinaryStream = BinaryStream.Create(f)
+			bs.Write(data)
+			bs.Close
+			Return True
+			
+		End Function
+	#tag EndMenuHandler
+
+	#tag MenuHandler
+		Function MacroStartItem() As Boolean Handles MacroStartItem.Action
+			mMacro = New Scintilla.Macro
+			EditControl1.MacroStart
+			Return True
+		End Function
+	#tag EndMenuHandler
+
+	#tag MenuHandler
 		Function NewDocumentItem() As Boolean Handles NewDocumentItem.Action
 			If EditControl1.Dirty Then
 			Dim msg, ttl As String
@@ -334,6 +386,14 @@ End
 		Private mBookmarks() As Integer
 	#tag EndProperty
 
+	#tag Property, Flags = &h21
+		Private mLastMacroIndex As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private mMacro As Scintilla.Macro
+	#tag EndProperty
+
 
 #tag EndWindowCode
 
@@ -379,5 +439,10 @@ End
 		Function ContextualMenuAction(hitItem as MenuItem) As Boolean
 		  MsgBox(hitItem.Text)
 		End Function
+	#tag EndEvent
+	#tag Event
+		Sub MacroRecord(MessageID As Integer, WParam As Ptr, LParam As Ptr)
+		  If mMacro <> Nil Then mMacro.Record(MessageID, WParam, LParam)
+		End Sub
 	#tag EndEvent
 #tag EndEvents

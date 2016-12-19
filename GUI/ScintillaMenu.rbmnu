@@ -187,5 +187,41 @@ Begin Menu ScintillaMenu
          AutoEnable = True
       End
    End
+   Begin MenuItem MacroMenu
+      SpecialMenu = 0
+      Text = "&Macros"
+      Index = -2147483648
+      AutoEnable = True
+      Begin MenuItem MacroStartItem
+         SpecialMenu = 0
+         Text = "Begin &Recording"
+         Index = -2147483648
+         AutoEnable = True
+      End
+      Begin MenuItem MacroEndItem
+         SpecialMenu = 0
+         Text = "&Stop Recording"
+         Index = -2147483648
+         AutoEnable = True
+      End
+      Begin MenuItem MacroPlayItem
+         SpecialMenu = 0
+         Text = "&Play"
+         Index = -2147483648
+         AutoEnable = True
+      End
+      Begin MenuItem MacroSaveItem
+         SpecialMenu = 0
+         Text = "&Save..."
+         Index = -2147483648
+         AutoEnable = True
+      End
+      Begin MenuItem MacroLoadItem
+         SpecialMenu = 0
+         Text = "&Load..."
+         Index = -2147483648
+         AutoEnable = True
+      End
+   End
 End
 #tag EndMenu

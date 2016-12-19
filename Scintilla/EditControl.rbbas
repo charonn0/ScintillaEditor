@@ -210,6 +210,18 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub MacroStart()
+		  Call Me.SendMessage(Scintilla.SCI.STARTRECORD)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub MacroStop()
+		  Call Me.SendMessage(Scintilla.SCI.STOPRECORD)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function Margins() As Scintilla.Managers.Margins
 		  Return New Scintilla.Managers.Margins(Me)
 		End Function
