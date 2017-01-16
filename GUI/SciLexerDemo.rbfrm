@@ -445,4 +445,24 @@ End
 		  If mMacro <> Nil Then mMacro.Record(MessageID, WParam, LParam)
 		End Sub
 	#tag EndEvent
+	#tag Event
+		Sub TextChanged()
+		  Select Case Me.Lines.Count
+		  Case Is <= 99
+		    Me.Margins.Width(0) = 16
+		  Case Is <= 999
+		    Me.Margins.Width(0) = 24
+		  Case Is <= 9999
+		    Me.Margins.Width(0) = 32
+		  Case Is <= 99999
+		    Me.Margins.Width(0) = 40
+		  Case Is <= 999999
+		    Me.Margins.Width(0) = 48
+		  Case Is <= 9999999
+		    Me.Margins.Width(0) = 56
+		  Case Is <= 99999999
+		    Me.Margins.Width(0) = 64
+		  End Select
+		End Sub
+	#tag EndEvent
 #tag EndEvents
