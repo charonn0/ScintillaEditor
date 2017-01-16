@@ -2,17 +2,20 @@
 Protected Class Editor
 	#tag Method, Flags = &h1
 		Protected Sub Constructor(ParentWindow As Integer, Left As Integer, Top As Integer, Width As Integer, Height As Integer)
+		  ' Calling Scintilla.IsAvailable loads the Scintilla library, which in turn
+		  ' registers a window class named "Scintilla". 
 		  If Not Scintilla.IsAvailable Then Raise New PlatformNotSupportedException
 		  Const Scintilla_WndClass = "Scintilla"
-		  mHWND = CreateWindowExA(WS_EX_CONTROLPARENT, Scintilla_WndClass, "", WS_CHILD Or WS_CLIPCHILDREN Or WS_TABSTOP Or WS_VISIBLE, _
-		  Left, Top, Width, Height, ParentWindow, 0, 0, Nil)
-		  If mHWND = 0 Then
-		    mHWND = GetLastError()
-		    Raise New RuntimeException'Scintilla.ScintillaException(GetLastError, False)
-		  End If
+		  
+		  ' create a new control of the Scintilla window class
+		  mHandle = CreateWindowExA(WS_EX_CONTROLPARENT, Scintilla_WndClass, "", _
+		  WS_CHILD Or WS_CLIPCHILDREN Or WS_TABSTOP Or WS_VISIBLE, Left, Top, Width, Height, _
+		  ParentWindow, 0, 0, Nil)
+		  
+		  If mHandle = 0 Then Raise New ScintillaException(GetLastError, False)
 		  
 		  ' Set the parent window
-		  Call SetParent(mHWND, ParentWindow)
+		  Call SetParent(mHandle, ParentWindow)
 		  
 		  ' Now subclass the parent window so we can receive its window messages
 		  If WndProcs = Nil Then WndProcs = New Dictionary
@@ -29,7 +32,7 @@ Protected Class Editor
 	#tag Method, Flags = &h0
 		Sub Constructor(ParentWindow As RectControl, Left As Integer, Top As Integer, Width As Integer, Height As Integer)
 		  Me.Constructor(ParentWindow.Handle, Left, Top, Width, Height)
-		  mParent = ParentWindow
+		  mParent = New WeakRef(ParentWindow)
 		End Sub
 	#tag EndMethod
 
@@ -67,6 +70,7 @@ Protected Class Editor
 		  If nextWndProc <> 0 Then
 		    Return CallWindowProcA(nextWndProc, HWND, msg, wParam, lParam)
 		  Else
+		    ' There is no next WndProc. This should never happen!
 		    Break
 		    System.DebugLog(App.ExecutableFile.Name + ": HWND(0x" + Hex(HWND) + ") No WndProc to call!")
 		  End If
@@ -77,28 +81,28 @@ Protected Class Editor
 		Private Sub Destructor()
 		  For i As Integer = UBound(Subclasses) DownTo 0
 		    Dim wndclass As Dictionary = Subclasses(i)
-		    Dim subclass As WeakRef = wndclass.Lookup(mHWND, Nil)
+		    Dim subclass As WeakRef = wndclass.Lookup(mHandle, Nil)
 		    If subclass <> Nil And subclass.Value <> Nil And subclass.Value Is Me Then
-		      wndclass.Remove(mHWND)
+		      wndclass.Remove(mHandle)
 		    End If
 		  Next
 		  
 		  For i As Integer = UBound(Subclasses) DownTo 0
 		    Dim wndclass As Dictionary = Subclasses(i)
-		    If wndclass.HasKey(mHWND) Then Return ' More Subclasses still exist
+		    If wndclass.HasKey(mHandle) Then Return ' More Subclasses still exist
 		  Next
 		  
-		  If Not WndProcs.HasKey(mHWND) Then Return
-		  Dim oldWndProc As Ptr = WndProcs.Value(mHWND)
-		  Call SetWindowLongA(mHWND, GWL_WNDPROC, oldWndProc)
-		  WndProcs.Remove(mHWND)
+		  If Not WndProcs.HasKey(mHandle) Then Return
+		  Dim oldWndProc As Ptr = WndProcs.Value(mHandle)
+		  Call SetWindowLongA(mHandle, GWL_WNDPROC, oldWndProc)
+		  WndProcs.Remove(mHandle)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function Handle() As Integer
-		  Return mHWND
+		  Return mHandle
 		End Function
 	#tag EndMethod
 
@@ -110,7 +114,7 @@ Protected Class Editor
 
 	#tag Method, Flags = &h0
 		Function Parent() As Scintilla.EditControl
-		  If mParent <> Nil And mParent IsA Scintilla.EditControl Then return Scintilla.EditControl(mParent)
+		  If mParent <> Nil And mParent.Value <> Nil And mParent.Value IsA Scintilla.EditControl Then return Scintilla.EditControl(mParent.Value)
 		End Function
 	#tag EndMethod
 
@@ -123,7 +127,7 @@ Protected Class Editor
 		  If DirectMessage Then ' Invoke the Scintilla routine directly
 		    Return DirectFn.Invoke(DirectPtr, Msg, WParam, LParam)
 		  Else ' Normal messaging
-		    Return SendMessageA(mHWND, Msg, WParam, LParam)
+		    Return SendMessageA(mHandle, Msg, WParam, LParam)
 		  End If
 		End Function
 	#tag EndMethod
@@ -174,7 +178,7 @@ Protected Class Editor
 		#tag Getter
 			Get
 			  If mDirectFn = Nil Then
-			    Dim i As Integer = SendMessageA(mHWND, Scintilla.SCI.GETDIRECTFUNCTION, Nil, Nil)
+			    Dim i As Integer = SendMessageA(mHandle, Scintilla.SCI.GETDIRECTFUNCTION, Nil, Nil)
 			    If i = 0 Then Raise New RuntimeException'ScintillaException(GetLastError, False)
 			    mDirectFn = New Scintilla_Direct(Ptr(i))
 			  End If
@@ -188,7 +192,7 @@ Protected Class Editor
 		#tag Getter
 			Get
 			  If mDirectPtr = Nil Then
-			    Dim pt As Integer = SendMessageA(mHWND, Scintilla.SCI.GETDIRECTPOINTER, Nil, Nil)
+			    Dim pt As Integer = SendMessageA(mHandle, Scintilla.SCI.GETDIRECTPOINTER, Nil, Nil)
 			    If pt = 0 Then Raise New RuntimeException'ScintillaException(GetLastError, False)
 			    mDirectPtr = Ptr(pt)
 			  End If
@@ -206,7 +210,7 @@ Protected Class Editor
 		#tag EndGetter
 		#tag Setter
 			Set
-			  Call EnableWindow(mHWND, value)
+			  Call EnableWindow(mHandle, value)
 			  mEnabled = value
 			End Set
 		#tag EndSetter
@@ -226,15 +230,15 @@ Protected Class Editor
 	#tag EndProperty
 
 	#tag Property, Flags = &h1
-		Protected mHWND As Integer
+		Protected mHandle As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h1
 		Protected mLastError As Integer
 	#tag EndProperty
 
-	#tag Property, Flags = &h1
-		Protected mParent As RectControl
+	#tag Property, Flags = &h21
+		Private mParent As WeakRef
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
