@@ -79,6 +79,7 @@ Protected Class Editor
 
 	#tag Method, Flags = &h21
 		Private Sub Destructor()
+		  If mHandle = 0 Then Return
 		  For i As Integer = UBound(Subclasses) DownTo 0
 		    Dim wndclass As Dictionary = Subclasses(i)
 		    Dim subclass As WeakRef = wndclass.Lookup(mHandle, Nil)
