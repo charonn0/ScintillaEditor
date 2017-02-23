@@ -77,7 +77,7 @@ Inherits Scintilla.Managers.BaseManager
 
 	#tag ViewBehavior
 		#tag ViewProperty
-			Name="HScollbarVisible"
+			Name="HScrollbarVisible"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
@@ -102,12 +102,12 @@ Inherits Scintilla.Managers.BaseManager
 			InheritedFrom="Object"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="ScollbarVisible"
+			Name="ScrollbarVisible"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="ScollPastEnd"
+			Name="ScrollPastEnd"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
