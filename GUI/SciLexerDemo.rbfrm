@@ -39,7 +39,7 @@ Begin Window SciLexerDemo
       Enabled         =   True
       EOLVisible      =   True
       EraseBackground =   True
-      Height          =   292
+      Height          =   324
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
