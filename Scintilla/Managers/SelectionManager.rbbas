@@ -16,7 +16,7 @@ Inherits Scintilla.Managers.BaseManager
 
 	#tag Method, Flags = &h0
 		Sub EmptySelection(NewCaretPosition As Integer = - 1)
-		  If NewCaretPosition <= -1 Then NewCaretPosition = 0
+		  If NewCaretPosition <= -1 Then NewCaretPosition = Me.Caret
 		  Call Me.SendMessage(Scintilla.SCI.SETEMPTYSELECTION, NewCaretPosition)
 		End Sub
 	#tag EndMethod
