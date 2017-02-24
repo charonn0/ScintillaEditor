@@ -238,6 +238,7 @@ Inherits Canvas
 		    bs.Close
 		  #EndIf
 		  mInitMacro = Nil
+		  mInitMacroDelayTimer = Nil
 		  RaiseEvent Open()
 		End Sub
 	#tag EndMethod
