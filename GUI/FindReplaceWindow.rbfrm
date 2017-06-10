@@ -299,7 +299,7 @@ Begin Window FindReplaceWindow
       Underline       =   ""
       Value           =   False
       Visible         =   True
-      Width           =   100
+      Width           =   89
    End
    Begin CheckBox UseRegex
       AutoDeactivate  =   True
@@ -331,7 +331,7 @@ Begin Window FindReplaceWindow
       Underline       =   ""
       Value           =   False
       Visible         =   True
-      Width           =   66
+      Width           =   58
    End
    Begin CheckBox WholeWord
       AutoDeactivate  =   True
