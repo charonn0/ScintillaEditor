@@ -134,7 +134,7 @@ Protected Class Editor
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function WndProc(HWND as Integer, msg as Integer, wParam as Ptr, lParam as Ptr, ByRef RetValue As Integer) As Boolean
+		Private Function WndProc(HWND As Integer, Msg As Integer, WParam As Ptr, LParam As Ptr, ByRef RetValue As Integer) As Boolean
 		  #pragma Unused RetValue
 		  #pragma Unused HWND
 		  #pragma Unused wParam
