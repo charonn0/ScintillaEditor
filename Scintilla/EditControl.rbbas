@@ -104,12 +104,11 @@ Inherits Canvas
 		  AddHandler mEditor.ScintillaEvent, WeakAddressOf ScintillaEventHandler
 		  
 		  ' If we recorded any macros, replay them
-		  If mInitMacro <> Nil Then
-		    mInitMacroDelayTimer = New Timer
-		    AddHandler mInitMacroDelayTimer.Action, WeakAddressOf mInitMacroDelayTimerActionHandler
-		    mInitMacroDelayTimer.Period = 100
-		    mInitMacroDelayTimer.Mode = Timer.ModeSingle
-		  End If
+		  mInitMacroDelayTimer = New Timer
+		  AddHandler mInitMacroDelayTimer.Action, WeakAddressOf mInitMacroDelayTimerActionHandler
+		  mInitMacroDelayTimer.Period = 100
+		  mInitMacroDelayTimer.Mode = Timer.ModeSingle
+		  
 		  Canvas(Me).EraseBackground = False
 		  Canvas(Me).DoubleBuffer = False
 		End Sub
@@ -230,13 +229,15 @@ Inherits Canvas
 	#tag Method, Flags = &h21
 		Private Sub mInitMacroDelayTimerActionHandler(Sender As Timer)
 		  #pragma Unused Sender
-		  Me.PlayMacro(mInitMacro)
-		  #If DUMP_INIT_MACRO Then
-		    Dim s As String = mInitMacro.ToString
-		    Dim bs As BinaryStream = BinaryStream.Create(SpecialFolder.Desktop.Child("init.json"), True)
-		    bs.Write(s)
-		    bs.Close
-		  #EndIf
+		  If mInitMacro <> Nil Then 
+		    Me.PlayMacro(mInitMacro)
+		    #If DUMP_INIT_MACRO Then
+		      Dim s As String = mInitMacro.ToString
+		      Dim bs As BinaryStream = BinaryStream.Create(SpecialFolder.Desktop.Child("init.json"), True)
+		      bs.Write(s)
+		      bs.Close
+		    #EndIf
+		  End If
 		  mInitMacro = Nil
 		  mInitMacroDelayTimer = Nil
 		  RaiseEvent Open()
