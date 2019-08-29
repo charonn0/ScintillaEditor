@@ -28,7 +28,7 @@ Begin Window SciLexerDemo
       AcceptFocus     =   True
       AcceptTabs      =   True
       AutoDeactivate  =   True
-      BackColor       =   "&cFFFFFF"
+      BackColor       =   &h00FFFFFF
       Backdrop        =   ""
       CaptureMouse    =   True
       CaretPosition   =   ""
@@ -61,9 +61,9 @@ Begin Window SciLexerDemo
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "Hello, world! Hello, world! Hello, world! Hello, world! \r\nHello, world! Hello, world! Hello, world! Hello, world! \r\nHello, world! Hello, world! Hello, world! Hello, world! \r\nHello, world! Hello, world! Hello, world! Hello, world! \r\nHello, world! Hello, world! Hello, world! Hello, world! \r\nHello, world! Hello, world! Hello, world! Hello, world! \r\nHello, world! Hello, world! Hello, world! Hello, world! \r\nHello, world! Hello, world! Hello, world! Hello, world! \r\nHello, world! Hello, world! Hello, world! Hello, world! \r\nHello, world! Hello, world! Hello, world! Hello, world! \r\nHello, world! Hello, world! Hello, world! Hello, world! \r\nHello, world! Hello, world! Hello, world! Hello, world! \r\nHello, world! Hello, world! Hello, world! Hello, world! \r\nHello, world! Hello, world! Hello, world! Hello, world! \r\nHello, world! Hello, world! Hello, world! Hello, world! \r\nHello, world! Hello, world! Hello, world! Hello, world! \r\nHello, world! Hello, world! Hello, world! Hello, world! \r\nHello, world! Hello, world! Hello, world! Hello, world! \r\nHello, world! Hello, world! Hello, world! Hello, world! \r\nHello, world! Hello, world! Hello, world! Hello, world! \r\nHello, world! Hello, world! Hello, world! Hello, world! \r\nHello, world! Hello, world! Hello, world! Hello, world! \r\nHello, world! Hello, world! Hello, world! Hello, world! \r\nHello, world! Hello, world! Hello, world! Hello, world! \r\nHello, world! Hello, world! Hello, world! Hello, world! \r\nHello, world! Hello, world! Hello, world! Hello, world! \r\nHello, world! Hello, world! Hello, world! Hello, world! \r\nHello, world! Hello, world! Hello, world! Hello, world! "
-      TextColor       =   "&c000000"
+      TextColor       =   &h00000000
       TextFont        =   ""
-      TextSize        =   ""
+      TextSize        =   0
       Top             =   0
       UseFocusRing    =   True
       UsePopup        =   True
