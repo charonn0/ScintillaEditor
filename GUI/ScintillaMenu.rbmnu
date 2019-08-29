@@ -174,6 +174,12 @@ Begin Menu ScintillaMenu
             End
          End
       End
+      Begin MenuItem ShowLineNums
+         SpecialMenu = 0
+         Text = "Line numbers"
+         Index = -2147483648
+         AutoEnable = True
+      End
    End
    Begin MenuItem FormatMenu
       SpecialMenu = 0
