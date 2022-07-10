@@ -134,7 +134,18 @@ Protected Module Scintilla
 		      Return PackParam(0)
 		    End If
 		  Case VarType(Param) = Variant.TypeInteger
-		    p = Ptr(Param.Int32Value)
+		    #If Target64Bit Then
+		      p = Ptr(Param.Int64Value)
+		    #Else
+		      p = Ptr(Param.Int32Value)
+		    #EndIf
+		  Case VarType(Param) = Variant.TypeInt64
+		    #If Target64Bit Then
+		      Dim value As Int64 = Param.Int64Value
+		    #Else
+		      Dim value As Int32 = Param.Int64Value
+		    #EndIf
+		    p = Ptr(value)
 		  Case VarType(Param) = Variant.TypeString
 		    ' this sometimes doesn't work. Prefer MemoryBlocks
 		    Dim mb As New MemoryBlock(Param.StringValue.LenB * 2 + 1)

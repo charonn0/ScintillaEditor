@@ -120,7 +120,7 @@ Inherits Scintilla.Managers.BaseManager
 			Get
 			  Dim mb As New MemoryBlock(4)
 			  Dim i As Integer = Me.SendMessage(Scintilla.SCI.STYLEGETFORE, Me.StyleNumber, 0)
-			  mb.ColorValue(0, 32) = Color(i)
+			  mb.Int32Value(0) = i
 			  Return mb.ColorValue(0, 32)
 			  'RGB(mb.Byte(0), mb.Byte(1), mb.Byte(2))
 			End Get
